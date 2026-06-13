@@ -1,0 +1,24 @@
+{
+  "total_chunks": 138142,
+  "chunks_over_tokenizer_limit": 0,
+  "over_limit_pct": 0.0,
+  "empty_chunks": 0,
+  "very_short_chunks_lt50": 197,
+  "first_chunks_with_title": 3017,
+  "first_chunks_total": 3017,
+  "chunks_ending_properly": 8584,
+  "chunks_ending_pct": 6.21,
+  "token_count_stats": {
+    "min": 2,
+    "max": 282,
+    "mean": 246.2,
+    "median": 255.0,
+    "p95": 256.0,
+    "p99": 256.0
+  },
+  "multi_chunk_documents": 3017,
+  "single_chunk_documents": 11,
+  "sample_doc_id": "12929205",
+  "sample_overlap_chars": 0,
+  "sample_overlap_tokens_est": 0
+}

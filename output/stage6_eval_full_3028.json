@@ -1,0 +1,415 @@
+{
+  "total_queries": 50,
+  "success": 50,
+  "failure": 0,
+  "has_documents": 50,
+  "no_documents": 0,
+  "avg_recall": 5.0,
+  "min_recall": 5,
+  "max_recall": 5,
+  "avg_retrieval_time_ms": 165.9,
+  "total_eval_time_s": 8.3,
+  "fusion_strategy": "rrf",
+  "per_query": [
+    {
+      "query": "What is ARNO protein?",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 285.6,
+      "top1_pmid": "12969509",
+      "top1_year": "2003",
+      "error": null
+    },
+    {
+      "query": "ARF protein activation of phospholipase D",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 155.9,
+      "top1_pmid": "12969509",
+      "top1_year": "2003",
+      "error": null
+    },
+    {
+      "query": "PD-1 inhibitor immunotherapy cancer",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 181.4,
+      "top1_pmid": "39018400",
+      "top1_year": "2024",
+      "error": null
+    },
+    {
+      "query": "EGFR mutation lung cancer treatment",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 190.3,
+      "top1_pmid": "15318946",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "metformin cardiovascular disease",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 146.7,
+      "top1_pmid": "15447788",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "SGLT2 inhibitor heart failure diabetes",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 150.3,
+      "top1_pmid": "15350195",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "aspirin clopidogrel combination therapy",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 150.4,
+      "top1_pmid": "15317652",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "hypertension ARB treatment efficacy",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 159.4,
+      "top1_pmid": "15453913",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "CAR-T cell therapy recent advances",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 192.7,
+      "top1_pmid": "14624234",
+      "top1_year": "2003",
+      "error": null
+    },
+    {
+      "query": "ACE inhibitor diabetic kidney disease",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 154.6,
+      "top1_pmid": "15500690",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "mRNA vaccine cancer therapy",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 162.0,
+      "top1_pmid": "15502875",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "HER2-positive breast cancer trastuzumab",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 151.1,
+      "top1_pmid": "15341668",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "JAK inhibitor rheumatoid arthritis",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 157.2,
+      "top1_pmid": "12969509",
+      "top1_year": "2003",
+      "error": null
+    },
+    {
+      "query": "statin therapy primary prevention",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 186.5,
+      "top1_pmid": "15339337",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "checkpoint inhibitor melanoma",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 147.2,
+      "top1_pmid": "15367334",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "anticoagulation atrial fibrillation",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 115.6,
+      "top1_pmid": "15377387",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "GLP-1 agonist weight loss mechanism",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 202.5,
+      "top1_pmid": "15328533",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "leukemia targeted therapy BCR-ABL",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 170.8,
+      "top1_pmid": "15447788",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "antibody-drug conjugate solid tumor",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 172.9,
+      "top1_pmid": "38904116",
+      "top1_year": "2024",
+      "error": null
+    },
+    {
+      "query": "tumor microenvironment immunotherapy",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 163.3,
+      "top1_pmid": "15283862",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "二甲双胍对心血管疾病的影响",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 169.4,
+      "top1_pmid": "15272932",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "PD-1 免疫疗法的最新进展",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 171.5,
+      "top1_pmid": "15500702",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "阿司匹林在心血管疾病一级预防中的作用",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 141.6,
+      "top1_pmid": "15511297",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "EGFR 突变肺癌靶向治疗",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 180.7,
+      "top1_pmid": "15318946",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "高血压患者的 ARB 类药物治疗",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 178.5,
+      "top1_pmid": "15453913",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "SGLT2 抑制剂在心力衰竭中的应用",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 173.0,
+      "top1_pmid": "15527505",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "近五年 CAR-T 治疗血液肿瘤研究",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 165.1,
+      "top1_pmid": "14966535",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "GLP-1 受体激动剂减肥机制",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 178.9,
+      "top1_pmid": "14737191",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "二型糖尿病合并心血管疾病用药",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 143.0,
+      "top1_pmid": "15578112",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "高血压合并糖尿病的联合用药",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 143.8,
+      "top1_pmid": "15461784",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "近三年免疫检查点抑制剂研究",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 145.6,
+      "top1_pmid": "15447788",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "急性心肌梗死的抗凝治疗",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 142.7,
+      "top1_pmid": "15461814",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "新冠后遗症的长期影响",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 131.9,
+      "top1_pmid": "15377390",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "EGFR-TKI 耐药机制",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 217.3,
+      "top1_pmid": "14737219",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "ACEI 与 ARB 的区别",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 207.5,
+      "top1_pmid": "14551916",
+      "top1_year": "2003",
+      "error": null
+    },
+    {
+      "query": "糖尿病肾病的治疗策略",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 167.8,
+      "top1_pmid": "",
+      "top1_year": "2024",
+      "error": null
+    },
+    {
+      "query": "急性白血病靶向治疗",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 160.6,
+      "top1_pmid": "15345057",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "冠心病的二级预防",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 149.5,
+      "top1_pmid": "15361257",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "肿瘤免疫治疗耐药机制",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 142.2,
+      "top1_pmid": "39018400",
+      "top1_year": "2024",
+      "error": null
+    },
+    {
+      "query": "新型口服抗凝药比较",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 173.7,
+      "top1_pmid": "15328531",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "ARNO Sec7 domain structure",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 150.3,
+      "top1_pmid": "12969509",
+      "top1_year": "2003",
+      "error": null
+    },
+    {
+      "query": "mitochondrial dysfunction aging",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 157.8,
+      "top1_pmid": "14737185",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "neuroinflammation Alzheimer disease",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 159.2,
+      "top1_pmid": "",
+      "top1_year": "2024",
+      "error": null
+    },
+    {
+      "query": "gut microbiome obesity",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 176.4,
+      "top1_pmid": "15523558",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "CRISPR gene therapy sickle cell",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 156.6,
+      "top1_pmid": "15496233",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "circadian rhythm sleep disorder",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 142.0,
+      "top1_pmid": "15252455",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "antibiotic resistance MRSA",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 145.1,
+      "top1_pmid": "15476559",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "long COVID cognitive symptoms",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 196.4,
+      "top1_pmid": "15350202",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "人工智能辅助医学诊断",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 150.1,
+      "top1_pmid": "15310409",
+      "top1_year": "2004",
+      "error": null
+    },
+    {
+      "query": "基因编辑伦理问题",
+      "retrieved_count": 5,
+      "retrieval_time_ms": 178.4,
+      "top1_pmid": "15312233",
+      "top1_year": "2004",
+      "error": null
+    }
+  ]
+}

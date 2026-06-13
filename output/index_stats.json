@@ -1,0 +1,21 @@
+{
+  "collection_name": "medical_papers_v4",
+  "total_chunks": 138142,
+  "embedding_model": "BAAI/bge-small-en-v1.5",
+  "embedding_dimension": 384,
+  "index_built_at": "2026-06-03T23:37:02.925988",
+  "embed_time_seconds": 0,
+  "chunk_size_stats": {
+    "mean": 246.16243430672785,
+    "max": 282,
+    "min": 2
+  },
+  "metadata_fields": [
+    "doc_id",
+    "chunk_index",
+    "total_chunks",
+    "source_title",
+    "token_count",
+    "split_method"
+  ]
+}

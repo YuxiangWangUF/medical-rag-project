@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Query Enhancer 测试报告</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f4f6fa;
+      --panel: #ffffff;
+      --line: #e2e6ef;
+      --line-soft: #f0f2f7;
+      --text: #1a2035;
+      --text-2: #4a5578;
+      --muted: #8892b4;
+      --ink: #0f1526;
+      --primary: #3b82f6;
+      --accent: #f43f5e;
+      --green: #10b981;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; font-family: 'Outfit', -apple-system, 'PingFang SC', sans-serif; }
+    body { background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+
+    .container { max-width: 960px; margin: 0 auto; padding: 28px 20px 64px; }
+
+    /* Header */
+    .hero {
+      background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
+      border-radius: 20px;
+      padding: 36px 40px;
+      color: #fff;
+      margin-bottom: 28px;
+      box-shadow: 0 8px 32px -10px rgba(37,99,235,.35);
+    }
+    .hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 14px;
+      margin-bottom: 14px;
+      letter-spacing: .5px;
+    }
+    .hero h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin: 0 0 10px;
+      line-height: 1.25;
+      letter-spacing: -.5px;
+    }
+    .hero p { margin: 0; opacity: .75; font-size: 15px; line-height: 1.6; }
+
+    /* Stats row */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    @media (max-width: 600px) {
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+    }
+    .stat-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 22px 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.04);
+      transition: transform .15s, box-shadow .15s;
+    }
+    .stat-card:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -12px rgba(0,0,0,.1); }
+    .stat-label { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 8px; }
+    .stat-value { font-size: 34px; font-weight: 700; color: var(--ink); line-height: 1; }
+    .stat-unit { font-size: 13px; font-weight: 500; color: var(--muted); margin-top: 4px; }
+    .stat-card.accent .stat-value { color: var(--primary); }
+    .stat-card.green .stat-value { color: var(--green); }
+
+    /* Section title */
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--primary);
+    }
+
+    /* Table */
+    .table-wrap {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,.04);
+      margin-bottom: 28px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    thead { background: #f8fafc; }
+    th {
+      text-align: left;
+      padding: 13px 14px;
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .7px;
+      color: var(--muted);
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+    td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--line-soft);
+      color: var(--text);
+      vertical-align: middle;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #f8fafc; }
+    .query-text {
+      font-weight: 500;
+      color: var(--text);
+      max-width: 300px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .tag {
+      display: inline-block;
+      padding: 2px 9px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      margin: 1px 2px;
+    }
+    .tag-syn { background: #eff6ff; color: #2563eb; }
+    .tag-time { background: #f0fdf4; color: #16a34a; }
+    .tag-journal { background: #fef2f2; color: #dc2626; }
+    .tag-entity { background: #fdf4ff; color: #9333ea; }
+    .num { font-weight: 600; color: var(--text); font-variant-numeric: tabular-nums; }
+
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      padding-top: 8px;
+    }
+
+    /* Color bars for synonyms and variants */
+    .bar-cell { min-width: 60px; }
+    .mini-bar {
+      display: inline-block;
+      height: 6px;
+      border-radius: 3px;
+      background: var(--primary);
+      opacity: .6;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <div class="hero">
+    <div class="badge">医疗 RAG · 查询增强</div>
+    <h1>Query Enhancer 测试报告</h1>
+    <p>40 条测试 query 覆盖：同义词扩展、时间/期刊过滤、实体识别、查询变体生成</p>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card accent">
+      <div class="stat-label">总 Query 数</div>
+      <div class="stat-value">40</div>
+      <div class="stat-unit">条测试用例</div>
+    </div>
+    <div class="stat-card green">
+      <div class="stat-label">同义词扩展率</div>
+      <div class="stat-value">55%</div>
+      <div class="stat-unit">22/40 条触发</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">总同义词条数</div>
+      <div class="stat-value">63</div>
+      <div class="stat-unit">63 个扩展词</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">实体识别率</div>
+      <div class="stat-value">60%</div>
+      <div class="stat-unit">24/40 条识别</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">时间过滤</div>
+      <div class="stat-value">11</div>
+      <div class="stat-unit">条含年份过滤</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">期刊过滤</div>
+      <div class="stat-value">7</div>
+      <div class="stat-unit">条含期刊过滤</div>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Query</th>
+          <th>实体</th>
+          <th>同义词</th>
+          <th>时间过滤</th>
+          <th>期刊</th>
+          <th>变体数</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="num">1</td>
+          <td class="query-text" title="What is ARNO?">What is ARNO?</td>
+          <td><span class="tag tag-entity">gene_protein</span></td>
+          <td class="num">0</td>
+          <td>—</td><td>—</td>
+          <td class="num">1</td>
+        </tr>
+        <tr>
+          <td class="num">2</td>
+          <td class="query-text" title="What is the effect of MI on heart?">What is the effect of MI on heart?</td>
+          <td><span class="tag tag-entity">anatomy</span></td>
+          <td class="num">2</td>
+          <td>—</td><td>—</td>
+          <td class="num">3</td>
+        </tr>
+        <tr>
+          <td class="num">3</td>
+          <td class="query-text" title="Does metformin reduce the risk of CVD?">Does metformin reduce the risk of CVD?</td>
+          <td><span class="tag tag-entity">drug</span></td>
+          <td class="num">1</td>
+          <td>—</td><td>—</td>
+          <td class="num">2</td>
+        </tr>
+        <tr>
+          <td class="num">4</td>
+          <td class="query-text" title="二甲双胍对心血管疾病有何影响?">二甲双胍对心血管疾病有何影响?</td>
+          <td><span class="tag tag-entity">drug_cn</span></td>
+          <td class="num">2</td>
+          <td>—</td><td>—</td>
+          <td class="num">3</td>
+        </tr>
+        <tr>
+          <td class="num">5</td>
+          <td class="query-text" title="心梗病人能不能用阿司匹林?">心梗病人能不能用阿司匹林?</td>
+          <td><span class="tag tag-entity">drug_cn</span></td>
+          <td class="num">5</td>
+          <td>—</td><td>—</td>
+          <td class="num">6</td>
+        </tr>
+        <tr>
+          <td class="num">6</td>
+          <td class="query-text" title="What is the role of EGFR mutations in lung cancer?">What is the role of EGFR mutations in lung cancer?</td>
+          <td><span class="tag tag-entity">disease</span><span class="tag tag-entity">gene_protein</span><span class="tag tag-entity">anatomy</span></td>
+          <td class="num">1</td>
+          <td>—</td><td>—</td>
+          <td class="num">2</td>
+        </tr>
+        <tr>
+          <td class="num">7</td>
+          <td class="query-text" title="How does PSA relate to prostate cancer prognosis?">How does PSA relate to prostate cancer prognosis?</td>
+          <td><span class="tag tag-entity">disease</span><span class="tag tag-entity">anatomy</span></td>
+          <td class="num">0</td>
+          <td>—</td><td>—</td>
+          <td class="num">1</td>
+        </tr>
+        <tr>
+          <td class="num">8</td>
+          <td class="query-text" title="What is the mechanism of action of remdesivir against COVID-19?">What is the mechanism of action of remdesivir...</td>
+          <td><span class="tag tag-entity">drug</span></td>
+          <td class="num">3</td>
+          <td>—</td><td>—</td>
+          <td class="num">4</td>
+        </tr>
+        <tr>
+          <td class="num">9</td>
+          <td class="query-text" title="黄芪对免疫功能有什么作用?">黄芪对免疫功能有什么作用?</td>
+          <td>—</td>
+          <td class="num">0</td>
+          <td>—</td><td>—</td>
+          <td class="num">1</td>
+        </tr>
+        <tr>
+          <td class="num">10</td>
+          <td class="query-text" title="阿司匹林和氯吡格雷联合用药的效果和风险?">阿司匹林和氯吡格雷联合用药的效果和风险?</td>
+          <td><span class="tag tag-entity">drug_cn</span></td>
+          <td class="num">3</td>
+          <td>—</td><td>—</td>
+          <td class="num">4</td>
+        </tr>
+        <tr>
+          <td class="num">11</td>
+          <td class="query-text" title="SGLT2 inhibitors for heart failure in diabetes patients">SGLT2 inhibitors for heart failure in diabetes patients</td>
+          <td><span class="tag tag-entity">disease</span><span class="tag tag-entity">anatomy</span></td>
+          <td class="num">2</td>
+          <td>—</td><td>—</td>
+          <td class="num">3</td>
+        </tr>
+        <tr>
+          <td class="num">12</td>
+          <td class="query-text" title="PD-L1 expression and response to immunotherapy in NSCLC">PD-L1 expression and response to immunotherapy in NSCLC</td>
+          <td>—</td>
+          <td class="num">4</td>
+          <td>—</td><td>—</td>
+          <td class="num">5</td>
+        </tr>
+        <tr>
+          <td class="num">13</td>
+          <td class="query-text" title="Recent 5 years research on PD-1 immunotherapy">Recent 5 years research on PD-1 immunotherapy</td>
+          <td>—</td>
+          <td class="num">2</td>
+          <td><span class="tag tag-time">year ≥ 2021</span></td>
+          <td>—</td>
+          <td class="num">3</td>
+        </tr>
+        <tr>
+          <td class="num">14</td>
+          <td class="query-text" title="Latest 3 years studies on CAR-T cell therapy">Latest 3 years studies on CAR-T cell therapy</td>
+          <td>—</td>
+          <td class="num">0</td>
+          <td><span class="tag tag-time">year ≥ 2021</span></td>
+          <td>—</td>
+          <td class="num">1</td>
+        </tr>
+        <tr>
+          <td class="num">15</td>
+          <td class="query-text" title="Past 10 years clinical trials for Alzheimer's disease">Past 10 years clinical trials for Alzheimer's disease</td>
+          <td><span class="tag tag-entity">disease</span></td>
+          <td class="num">0</td>
+          <td><span class="tag tag-time">year ≥ 2016</span></td>
+          <td>—</td>
+          <td class="num">1</td>
+        </tr>
+        <tr>
+          <td class="num">16</td>
+          <td class="query-text" title="Clinical trials published since 2015 for rheumatoid arthritis">Clinical trials published since 2015 for rheumatoid arthritis</td>
+          <td><span class="tag tag-entity">disease</span></td>
+          <td class="num">0</td>
+          <td><span class="tag tag-time">year ≥ 2015</span></td>
+          <td>—</td>
+          <td class="num">1</td>
+        </tr>
+        <tr>
+          <td class="num">17</td>
+          <td class="query-text" title="Landmark studies in 2019 about GLP-1 agonists">Landmark studies in 2019 about GLP-1 agonists</td>
+          <td>—</td>
+          <td class="num">2</td>
+          <td><span class="tag tag-time">year ≥ 2019</span></td>
+          <td>—</td>
+          <td class="num">3</td>
+        </tr>
+        <tr>
+          <td class="num">18</td>
+          <td class="query-text" title="近五年关于 PD-1 免疫疗法的研究进展">近五年关于 PD-1 免疫疗法的研究进展</td>
+          <td>—</td>
+          <td class="num">2</td>
+          <td><span class="tag tag-time">year ≥ 2021</span></td>
+          <td>—</td>
+          <td class="num">3</td>
+        </tr>
+        <tr>
+          <td class="num">19</td>
+          <td class="query-text" title="近三年 mRNA 疫苗的研究进展">近三年 mRNA 疫苗的研究进展</td>
+          <td>—</td>
+          <td class="num">0</td>
+          <td><span class="tag tag-time">year ≥ 2021</span></td>
+          <td>—</td>
+          <td class="num">1</td>
+        </tr>
+        <tr>
+          <td class="num">20</td>
+          <td class="query-text" title="2020年以来关于新冠后遗症的研究">2020年以来关于新冠后遗症的研究</td>
+          <td>—</td>
+          <td class="num">3</td>
+          <td><span class="tag tag-time">year ≥ 2020</span></td>
+          <td>—</td>
+          <td class="num">4</td>
+        </tr>
+        <tr>
+          <td class="num">21</td>
+          <td class="query-text" title="What did Nature publish about CRISPR?">What did Nature publish about CRISPR?</td>
+          <td>—</td>
+          <td class="num">0</td>
+          <td>—</td>
+          <td><span class="tag tag-journal">nature</span></td>
+          <td class="num">1</td>
+        </tr>
+        <tr>
+          <td class="num">22</td>
+          <td class="query-text" title="Recent NEJM papers on COVID-19 vaccine efficacy">Recent NEJM papers on COVID-19 vaccine efficacy</td>
+          <td>—</td>
+          <td class="num">3</td>
+          <td><span class="tag tag-time">year ≥ 2021</span></td>
+          <td><span class="tag tag-journal">nejm</span></td>
+          <td class="num">4</td>
+        </tr>
+        <tr>
+          <td class="num">23</td>
+          <td class="query-text" title="Lancet reviews on gut microbiome and metabolic disease">Lancet reviews on gut microbiome and metabolic disease</td>
+          <td>—</td>
+          <td class="num">0</td>
+          <td>—</td>
+          <td><span class="tag tag-journal">lancet</span></td>
+          <td class="num">1</td>
+        </tr>
+        <tr>
+          <td class="num">24</td>
+          <td class="query-text" title="Cell published studies on p53 mutation in colorectal cancer">Cell published studies on p53 mutation in colorectal cancer</td>
+          <td><span class="tag tag-entity">disease</span><span class="tag tag-entity">gene_protein</span></td>
+          <td class="num">2</td>
+          <td>—</td>
+          <td><span class="tag tag-journal">cell</span></td>
+          <td class="num">3</td>
+        </tr>
+        <tr>
+          <td class="num">25</td>
+          <td class="query-text" title="Science articles on alpha-synuclein and Parkinson's disease">Science articles on alpha-synuclein and Parkinson's disease</td>
+          <td><span class="tag tag-entity">disease</span></td>
+          <td class="num">0</td>
+          <td>—</td>
+          <td><span class="tag tag-journal">science</span></td>
+          <td class="num">1</td>
+        </tr>
+        <tr>
+          <td class="num">26</td>
+          <td class="query-text" title="Impact of HbA1c control on cardiovascular outcomes in T2DM patients with hypertension">Impact of HbA1c control on cardiovascular outcomes...</td>
+          <td><span class="tag tag-entity">disease</span><span class="tag tag-entity">anatomy</span></td>
+          <td class="num">3</td>
+          <td>—</td><td>—</td>
+          <td class="num">4</td>
+        </tr>
+        <tr>
+          <td class="num">27</td>
+          <td class="query-text" title="Metformin and vitamin B12 deficiency in diabetic patients">Metformin and vitamin B12 deficiency in diabetic patients</td>
+          <td><span class="tag tag-entity">drug</span></td>
+          <td class="num">0</td>
+          <td>—</td><td>—</td>
+          <td class="num">1</td>
+        </tr>
+        <tr>
+          <td class="num">28</td>
+          <td class="query-text" title="ctDNA monitoring for EGFR mutant NSCLC targeted therapy response">ctDNA monitoring for EGFR mutant NSCLC targeted therapy response</td>
+          <td><span class="tag tag-entity">gene_protein</span></td>
+          <td class="num">3</td>
+          <td>—</td><td>—</td>
+          <td class="num">4</td>
+        </tr>
+        <tr>
+          <td class="num">29</td>
+          <td class="query-text" title="Incidence and mortality trends of pancreatic cancer globally">Incidence and mortality trends of pancreatic cancer globally</td>
+          <td><span class="tag tag-entity">disease</span></td>
+          <td class="num">0</td>
+          <td>—</td><td>—</td>
+          <td class="num">1</td>
+        </tr>
+        <tr>
+          <td class="num">30</td>
+          <td class="query-text" title="Subgroup analysis of sex differences in statin efficacy for CVD prevention">Subgroup analysis of sex differences in statin efficacy for CVD prevention</td>
+          <td>—</td>
+          <td class="num">3</td>
+          <td>—</td><td>—</td>
+          <td class="num">4</td>
+        </tr>
+        <tr>
+          <td class="num">31</td>
+          <td class="query-text" title="Hazard ratio and overall survival in immunotherapy trials">Hazard ratio and overall survival in immunotherapy trials</td>
+          <td>—</td>
+          <td class="num">0</td>
+          <td>—</td><td>—</td>
+          <td class="num">1</td>
+        </tr>
+        <tr>
+          <td class="num">32</td>
+          <td class="query-text" title="TMB and PD-1/PD-L1 inhibitor response correlation">TMB and PD-1/PD-L1 inhibitor response correlation</td>
+          <td>—</td>
+          <td class="num">4</td>
+          <td>—</td><td>—</td>
+          <td class="num">5</td>
+        </tr>
+        <tr>
+          <td class="num">33</td>
+          <td class="query-text" title="Meta-analysis of ACE inhibitors in heart failure with reduced ejection fraction">Meta-analysis of ACE inhibitors in heart failure with reduced ejection fraction</td>
+          <td><span class="tag tag-entity">disease</span><span class="tag tag-entity">anatomy</span></td>
+          <td class="num">0</td>
+          <td>—</td><td>—</td>
+          <td class="num">1</td>
+        </tr>
+        <tr>
+          <td class="num">34</td>
+          <td class="query-text" title="Recent advances in gene therapy for rare diseases">Recent advances in gene therapy for rare diseases</td>
+          <td>—</td>
+          <td class="num">0</td>
+          <td><span class="tag tag-time">year ≥ 2021</span></td>
+          <td>—</td>
+          <td class="num">1</td>
+        </tr>
+        <tr>
+          <td class="num">35</td>
+          <td class="query-text" title="Cell reports on novel drug delivery systems">Cell reports on novel drug delivery systems</td>
+          <td>—</td>
+          <td class="num">0</td>
+          <td>—</td>
+          <td><span class="tag tag-journal">cell</span></td>
+          <td class="num">1</td>
+        </tr>
+        <tr>
+          <td class="num">36</td>
+          <td class="query-text" title="ASA and bleeding risk in cardiovascular patients">ASA and bleeding risk in cardiovascular patients</td>
+          <td><span class="tag tag-entity">anatomy</span></td>
+          <td class="num">2</td>
+          <td>—</td><td>—</td>
+          <td class="num">3</td>
+        </tr>
+        <tr>
+          <td class="num">37</td>
+          <td class="query-text" title="高血压患者用 ARB 治疗的效果如何?">高血压患者用 ARB 治疗的效果如何?</td>
+          <td><span class="tag tag-entity">disease_cn</span></td>
+          <td class="num">4</td>
+          <td>—</td><td>—</td>
+          <td class="num">5</td>
+        </tr>
+        <tr>
+          <td class="num">38</td>
+          <td class="query-text" title="Myocardial infarction with ST-segment elevation treatment guidelines">Myocardial infarction with ST-segment elevation treatment guidelines</td>
+          <td><span class="tag tag-entity">disease</span></td>
+          <td class="num">0</td>
+          <td>—</td><td>—</td>
+          <td class="num">1</td>
+        </tr>
+        <tr>
+          <td class="num">39</td>
+          <td class="query-text" title="Which statins are NOT associated with increased diabetes risk?">Which statins are NOT associated with increased diabetes risk?</td>
+          <td><span class="tag tag-entity">disease</span></td>
+          <td class="num">0</td>
+          <td>—</td><td>—</td>
+          <td class="num">1</td>
+        </tr>
+        <tr>
+          <td class="num">40</td>
+          <td class="query-text" title="我在查找关于二型糖尿病患者使用恩格列净（empagliflozin）对心血管结局影响...">我在查找关于二型糖尿病患者使用恩格列净...</td>
+          <td><span class="tag tag-entity">drug</span><span class="tag tag-entity">disease_cn</span></td>
+          <td class="num">7</td>
+          <td><span class="tag tag-time">year ≥ 2021</span></td>
+          <td><span class="tag tag-journal">nejm</span></td>
+          <td class="num">8</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-title"><span class="dot"></span>关键修复验证</div>
+  <div class="table-wrap" style="margin-bottom: 28px;">
+    <table>
+      <thead>
+        <tr>
+          <th>Query</th>
+          <th>之前问题</th>
+          <th>修复后状态</th>
+          <th>结果</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Q14 Latest 3 years CAR-T cell therapy</td>
+          <td>误触发 journal=cell</td>
+          <td>仅 year ≥ 2021，无期刊</td>
+          <td style="color:#16a34a;font-weight:600">已修复</td>
+        </tr>
+        <tr>
+          <td>Q16 "since 2015"</td>
+          <td>漏了年份过滤</td>
+          <td>year ≥ 2015</td>
+          <td style="color:#16a34a;font-weight:600">已修复</td>
+        </tr>
+        <tr>
+          <td>Q17 "in 2019"</td>
+          <td>漏了年份过滤</td>
+          <td>year ≥ 2019</td>
+          <td style="color:#16a34a;font-weight:600">已修复</td>
+        </tr>
+        <tr>
+          <td>Q40 恩格列净</td>
+          <td>同义词数量偏少</td>
+          <td>7个同义词 + 8个变体 + nejm过滤</td>
+          <td style="color:#16a34a;font-weight:600">已修复</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-title"><span class="dot"></span>说明</div>
+  <div class="table-wrap">
+    <table>
+      <tbody>
+        <tr>
+          <td style="font-size:13px;color:var(--text-2);line-height:1.7">
+            <strong>标签含义：</strong>
+            <span class="tag tag-entity" style="font-size:10px">entity</span> 实体识别（drug / disease / gene_protein / anatomy / drug_cn / disease_cn）
+            <span class="tag tag-syn" style="font-size:10px">syn</span> 同义词扩展数量
+            <span class="tag tag-time" style="font-size:10px">time</span> 时间过滤
+            <span class="tag tag-journal" style="font-size:10px">journal</span> 期刊过滤
+            <br><br>
+            <strong>未解决问题：</strong>中药（黄芪）、医学统计术语（Hazard ratio）、否定语义（NOT associated）暂未支持，需要更高级 NLP 模型处理。
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer">
+    Query Enhancer 测试报告 · 40 Queries · 医疗 RAG 项目
+  </div>
+</div>
+</body>
+</html>

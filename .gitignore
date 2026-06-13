@@ -1,0 +1,67 @@
+# =============================================================================
+# .gitignore - 告诉 Git 哪些文件不要上传
+# =============================================================================
+
+# ===== 向量库(几百 MB - 几 GB,太大,老师自己重建)=====
+chroma_db/
+vector_db/
+*.chroma/
+*.sqlite3
+*.sqlite3-journal
+
+# ===== 原始数据(几百 MB,PubMed 公开数据,不用传)=====
+data/medical_papers/
+data/raw/
+
+# ===== Python 缓存 =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# ===== 测试缓存 =====
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.cache
+
+# ===== 虚拟环境 =====
+venv/
+env/
+.venv/
+ENV/
+
+# ===== 我的临时调试脚本(带下划线开头的)=====
+_*.py
+_*.log
+_*.txt
+_*.tmp
+_*.md
+
+# ===== 一些构建/分发产物 =====
+build/
+dist/
+*.egg-info/
+*.egg
+
+# ===== IDE =====
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ===== 大模型文件(单独下,不上传)=====
+*.gguf
+*.bin
+*.safetensors
+*.pt
+*.pth
+models/
+
+# ===== 临时输出 =====
+*.tmp
+*.bak
+*.log.gz

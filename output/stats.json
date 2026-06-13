@@ -1,0 +1,13 @@
+{
+  "processed_date": "2026-06-03T23:21:45.240047",
+  "data_split": "oa_comm_xml.PMC000xxxxxx.baseline.2026-01-23",
+  "original_documents": 3028,
+  "total_chunks": 138142,
+  "chunks_per_doc": 45.62,
+  "chunk_size": 256,
+  "chunk_overlap": 50,
+  "no_split_threshold": 300,
+  "tokenizer_limit": 512,
+  "embedding_model": "BAAI/bge-small-zh-v1.5",
+  "output_file": "./output\\chunks.parquet"
+}

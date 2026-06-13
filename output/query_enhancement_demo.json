@@ -1,0 +1,1179 @@
+[
+  {
+    "original": "What is ARNO?",
+    "cleaned": "What is ARNO?",
+    "entities": {
+      "gene_protein": [
+        "arno"
+      ]
+    },
+    "synonyms": [],
+    "query_variants": [
+      "What is ARNO?"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: What is ARNO?",
+    "keyword_query": "What is ARNO?",
+    "filter_conditions": {},
+    "enhancement_log": [
+      "[1] 清洗: 'What is ARNO?' → 'What is ARNO?'",
+      "[2] 实体识别: {'gene_protein': ['arno']}",
+      "[3] 同义词扩展: 无",
+      "[4] 生成 1 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: What is ARNO?'",
+      "[6] 关键词 query: What is ARNO?",
+      "[7] 提取过滤: 无"
+    ]
+  },
+  {
+    "original": "What is the effect of MI on heart?",
+    "cleaned": "What is the effect of MI on heart?",
+    "entities": {
+      "anatomy": [
+        "heart"
+      ]
+    },
+    "synonyms": [
+      "myocardial infarction",
+      "heart attack"
+    ],
+    "query_variants": [
+      "What is the effect of MI on heart?",
+      "What is the effect of MI on heart? myocardial infarction",
+      "What is the effect of MI on heart? heart attack"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: What is the effect of MI on heart?",
+    "keyword_query": "What is the effect of MI on heart? myocardial infarction heart attack",
+    "filter_conditions": {},
+    "enhancement_log": [
+      "[1] 清洗: 'What is the effect of MI on heart?' → 'What is the effect of MI on heart?'",
+      "[2] 实体识别: {'anatomy': ['heart']}",
+      "[3] 同义词扩展: ['myocardial infarction', 'heart attack']",
+      "[4] 生成 3 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: What is the effect of MI on heart?'",
+      "[6] 关键词 query: What is the effect of MI on heart? myocardial infarction heart attack",
+      "[7] 提取过滤: 无"
+    ]
+  },
+  {
+    "original": "Does metformin reduce the risk of CVD?",
+    "cleaned": "Does metformin reduce the risk of CVD?",
+    "entities": {
+      "drug": [
+        "metformin"
+      ]
+    },
+    "synonyms": [
+      "cardiovascular disease"
+    ],
+    "query_variants": [
+      "Does metformin reduce the risk of CVD?",
+      "Does metformin reduce the risk of CVD? cardiovascular disease"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: Does metformin reduce the risk of CVD?",
+    "keyword_query": "Does metformin reduce the risk of CVD? cardiovascular disease",
+    "filter_conditions": {},
+    "enhancement_log": [
+      "[1] 清洗: 'Does metformin reduce the risk of CVD?' → 'Does metformin reduce the risk of CVD?'",
+      "[2] 实体识别: {'drug': ['metformin']}",
+      "[3] 同义词扩展: ['cardiovascular disease']",
+      "[4] 生成 2 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: Does metformin reduce the risk of CVD?'",
+      "[6] 关键词 query: Does metformin reduce the risk of CVD? cardiovascular disease",
+      "[7] 提取过滤: 无"
+    ]
+  },
+  {
+    "original": "二甲双胍对心血管疾病有何影响?",
+    "cleaned": "二甲双胍对心血管疾病有何影响?",
+    "entities": {
+      "drug_cn": [
+        "二甲双胍"
+      ],
+      "disease_cn": [
+        "病"
+      ],
+      "anatomy_cn": [
+        "心"
+      ]
+    },
+    "synonyms": [
+      "格华止",
+      "metformin"
+    ],
+    "query_variants": [
+      "二甲双胍对心血管疾病有何影响? 格华止",
+      "二甲双胍对心血管疾病有何影响?",
+      "二甲双胍对心血管疾病有何影响? metformin"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: 二甲双胍对心血管疾病有何影响?",
+    "keyword_query": "二甲双胍对心血管疾病有何影响? 格华止 metformin",
+    "filter_conditions": {},
+    "enhancement_log": [
+      "[1] 清洗: '二甲双胍对心血管疾病有何影响?' → '二甲双胍对心血管疾病有何影响?'",
+      "[2] 实体识别: {'drug_cn': ['二甲双胍'], 'disease_cn': ['病'], 'anatomy_cn': ['心']}",
+      "[3] 同义词扩展: ['格华止', 'metformin']",
+      "[4] 生成 3 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: 二甲双胍对心血管疾病有何影响?'",
+      "[6] 关键词 query: 二甲双胍对心血管疾病有何影响? 格华止 metformin",
+      "[7] 提取过滤: 无"
+    ]
+  },
+  {
+    "original": "心梗病人能不能用阿司匹林?",
+    "cleaned": "心梗病人能不能用阿司匹林?",
+    "entities": {
+      "drug_cn": [
+        "阿司匹林"
+      ],
+      "disease_cn": [
+        "病"
+      ],
+      "anatomy_cn": [
+        "心"
+      ]
+    },
+    "synonyms": [
+      "心肌梗死",
+      "心肌梗塞",
+      "myocardial infarction",
+      "乙酰水杨酸",
+      "aspirin"
+    ],
+    "query_variants": [
+      "心梗病人能不能用阿司匹林? aspirin",
+      "心梗病人能不能用阿司匹林?",
+      "心梗病人能不能用阿司匹林? 乙酰水杨酸",
+      "心梗病人能不能用阿司匹林? 心肌梗死",
+      "心梗病人能不能用阿司匹林? myocardial infarction",
+      "心梗病人能不能用阿司匹林? 心肌梗塞"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: 心梗病人能不能用阿司匹林?",
+    "keyword_query": "心梗病人能不能用阿司匹林? 心肌梗死 心肌梗塞 myocardial infarction 乙酰水杨酸 aspirin",
+    "filter_conditions": {},
+    "enhancement_log": [
+      "[1] 清洗: '心梗病人能不能用阿司匹林?' → '心梗病人能不能用阿司匹林?'",
+      "[2] 实体识别: {'drug_cn': ['阿司匹林'], 'disease_cn': ['病'], 'anatomy_cn': ['心']}",
+      "[3] 同义词扩展: ['心肌梗死', '心肌梗塞', 'myocardial infarction', '乙酰水杨酸', 'aspirin']",
+      "[4] 生成 6 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: 心梗病人能不能用阿司匹林?'",
+      "[6] 关键词 query: 心梗病人能不能用阿司匹林? 心肌梗死 心肌梗塞 myocardial infarction 乙酰水杨酸 aspirin",
+      "[7] 提取过滤: 无"
+    ]
+  },
+  {
+    "original": "What is the role of EGFR mutations in lung cancer?",
+    "cleaned": "What is the role of EGFR mutations in lung cancer?",
+    "entities": {
+      "disease": [
+        "cancer"
+      ],
+      "gene_protein": [
+        "egfr"
+      ],
+      "anatomy": [
+        "lung"
+      ]
+    },
+    "synonyms": [
+      "epidermal growth factor receptor"
+    ],
+    "query_variants": [
+      "What is the role of EGFR mutations in lung cancer? epidermal growth factor receptor",
+      "What is the role of EGFR mutations in lung cancer?"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: What is the role of EGFR mutations in lung cancer?",
+    "keyword_query": "What is the role of EGFR mutations in lung cancer? epidermal growth factor receptor",
+    "filter_conditions": {},
+    "enhancement_log": [
+      "[1] 清洗: 'What is the role of EGFR mutations in lung cancer?' → 'What is the role of EGFR mutations in lung cancer?'",
+      "[2] 实体识别: {'disease': ['cancer'], 'gene_protein': ['egfr'], 'anatomy': ['lung']}",
+      "[3] 同义词扩展: ['epidermal growth factor receptor']",
+      "[4] 生成 2 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: What is the role of EGFR mutations in lung cancer?'",
+      "[6] 关键词 query: What is the role of EGFR mutations in lung cancer? epidermal growth factor receptor",
+      "[7] 提取过滤: 无"
+    ]
+  },
+  {
+    "original": "How does PSA relate to prostate cancer prognosis?",
+    "cleaned": "How does PSA relate to prostate cancer prognosis?",
+    "entities": {
+      "disease": [
+        "cancer"
+      ],
+      "anatomy": [
+        "prostate"
+      ]
+    },
+    "synonyms": [],
+    "query_variants": [
+      "How does PSA relate to prostate cancer prognosis?"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: How does PSA relate to prostate cancer prognosis?",
+    "keyword_query": "How does PSA relate to prostate cancer prognosis?",
+    "filter_conditions": {},
+    "enhancement_log": [
+      "[1] 清洗: 'How does PSA relate to prostate cancer prognosis?' → 'How does PSA relate to prostate cancer prognosis?'",
+      "[2] 实体识别: {'disease': ['cancer'], 'anatomy': ['prostate']}",
+      "[3] 同义词扩展: 无",
+      "[4] 生成 1 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: How does PSA relate to prostate cancer prognosis?'",
+      "[6] 关键词 query: How does PSA relate to prostate cancer prognosis?",
+      "[7] 提取过滤: 无"
+    ]
+  },
+  {
+    "original": "What is the mechanism of action of remdesivir against COVID-19?",
+    "cleaned": "What is the mechanism of action of remdesivir against COVID-19?",
+    "entities": {
+      "drug": [
+        "remdesivir"
+      ]
+    },
+    "synonyms": [
+      "covid-19",
+      "sars-cov-2",
+      "coronavirus disease 2019"
+    ],
+    "query_variants": [
+      "What is the mechanism of action of remdesivir against COVID-19? coronavirus disease 2019",
+      "What is the mechanism of action of remdesivir against COVID-19?",
+      "What is the mechanism of action of remdesivir against COVID-19? sars-cov-2",
+      "What is the mechanism of action of remdesivir against COVID-19? covid-19"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: What is the mechanism of action of remdesivir against COVID-19?",
+    "keyword_query": "What is the mechanism of action of remdesivir against COVID-19? covid-19 sars-cov-2 coronavirus disease 2019",
+    "filter_conditions": {},
+    "enhancement_log": [
+      "[1] 清洗: 'What is the mechanism of action of remdesivir against COVID-19?' → 'What is the mechanism of action of remdesivir against COVID-19?'",
+      "[2] 实体识别: {'drug': ['remdesivir']}",
+      "[3] 同义词扩展: ['covid-19', 'sars-cov-2', 'coronavirus disease 2019']",
+      "[4] 生成 4 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: What is the mechanism of action of remdesivir against COVID-19?'",
+      "[6] 关键词 query: What is the mechanism of action of remdesivir against COVID-19? covid-19 sars-cov-2 coronavirus dise...",
+      "[7] 提取过滤: 无"
+    ]
+  },
+  {
+    "original": "黄芪对免疫功能有什么作用?",
+    "cleaned": "黄芪对免疫功能有什么作用?",
+    "entities": {},
+    "synonyms": [],
+    "query_variants": [
+      "黄芪对免疫功能有什么作用?"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: 黄芪对免疫功能有什么作用?",
+    "keyword_query": "黄芪对免疫功能有什么作用?",
+    "filter_conditions": {},
+    "enhancement_log": [
+      "[1] 清洗: '黄芪对免疫功能有什么作用?' → '黄芪对免疫功能有什么作用?'",
+      "[2] 实体识别: 未识别到医学实体",
+      "[3] 同义词扩展: 无",
+      "[4] 生成 1 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: 黄芪对免疫功能有什么作用?'",
+      "[6] 关键词 query: 黄芪对免疫功能有什么作用?",
+      "[7] 提取过滤: 无"
+    ]
+  },
+  {
+    "original": "阿司匹林和氯吡格雷联合用药的效果和风险?",
+    "cleaned": "阿司匹林和氯吡格雷联合用药的效果和风险?",
+    "entities": {
+      "drug_cn": [
+        "阿司匹林"
+      ]
+    },
+    "synonyms": [
+      "乙酰水杨酸",
+      "aspirin",
+      "clopidogrel"
+    ],
+    "query_variants": [
+      "阿司匹林和氯吡格雷联合用药的效果和风险?",
+      "阿司匹林和氯吡格雷联合用药的效果和风险? aspirin",
+      "阿司匹林和氯吡格雷联合用药的效果和风险? clopidogrel",
+      "阿司匹林和氯吡格雷联合用药的效果和风险? 乙酰水杨酸"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: 阿司匹林和氯吡格雷联合用药的效果和风险?",
+    "keyword_query": "阿司匹林和氯吡格雷联合用药的效果和风险? 乙酰水杨酸 aspirin clopidogrel",
+    "filter_conditions": {},
+    "enhancement_log": [
+      "[1] 清洗: '阿司匹林和氯吡格雷联合用药的效果和风险?' → '阿司匹林和氯吡格雷联合用药的效果和风险?'",
+      "[2] 实体识别: {'drug_cn': ['阿司匹林']}",
+      "[3] 同义词扩展: ['乙酰水杨酸', 'aspirin', 'clopidogrel']",
+      "[4] 生成 4 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: 阿司匹林和氯吡格雷联合用药的效果和风险?'",
+      "[6] 关键词 query: 阿司匹林和氯吡格雷联合用药的效果和风险? 乙酰水杨酸 aspirin clopidogrel",
+      "[7] 提取过滤: 无"
+    ]
+  },
+  {
+    "original": "SGLT2 inhibitors for heart failure in diabetes patients",
+    "cleaned": "SGLT2 inhibitors for heart failure in diabetes patients",
+    "entities": {
+      "disease": [
+        "heart failure",
+        "diabetes"
+      ],
+      "anatomy": [
+        "heart"
+      ]
+    },
+    "synonyms": [
+      "sodium-glucose cotransporter 2 inhibitor",
+      "sglt2 inhibitor"
+    ],
+    "query_variants": [
+      "SGLT2 inhibitors for heart failure in diabetes patients",
+      "SGLT2 inhibitors for heart failure in diabetes patients sglt2 inhibitor",
+      "SGLT2 inhibitors for heart failure in diabetes patients sodium-glucose cotransporter 2 inhibitor"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: SGLT2 inhibitors for heart failure in diabetes patients",
+    "keyword_query": "SGLT2 inhibitors for heart failure in diabetes patients sodium-glucose cotransporter 2 inhibitor sglt2 inhibitor",
+    "filter_conditions": {},
+    "enhancement_log": [
+      "[1] 清洗: 'SGLT2 inhibitors for heart failure in diabetes patients' → 'SGLT2 inhibitors for heart failure in diabetes patients'",
+      "[2] 实体识别: {'disease': ['heart failure', 'diabetes'], 'anatomy': ['heart']}",
+      "[3] 同义词扩展: ['sodium-glucose cotransporter 2 inhibitor', 'sglt2 inhibitor']",
+      "[4] 生成 3 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: SGLT2 inhibitors for heart failure in diabetes patients'",
+      "[6] 关键词 query: SGLT2 inhibitors for heart failure in diabetes patients sodium-glucose cotransporter 2 inhibitor sgl...",
+      "[7] 提取过滤: 无"
+    ]
+  },
+  {
+    "original": "PD-L1 expression and response to immunotherapy in NSCLC",
+    "cleaned": "PD-L1 expression and response to immunotherapy in NSCLC",
+    "entities": {},
+    "synonyms": [
+      "non-small cell lung cancer",
+      "non-small cell lung carcinoma",
+      "programmed death-ligand 1",
+      "cd274"
+    ],
+    "query_variants": [
+      "PD-L1 expression and response to immunotherapy in NSCLC cd274",
+      "PD-L1 expression and response to immunotherapy in NSCLC",
+      "PD-L1 expression and response to immunotherapy in NSCLC non-small cell lung carcinoma",
+      "PD-L1 expression and response to immunotherapy in NSCLC non-small cell lung cancer",
+      "PD-L1 expression and response to immunotherapy in NSCLC programmed death-ligand 1"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: PD-L1 expression and response to immunotherapy in NSCLC",
+    "keyword_query": "PD-L1 expression and response to immunotherapy in NSCLC non-small cell lung cancer non-small cell lung carcinoma programmed death-ligand 1 cd274",
+    "filter_conditions": {},
+    "enhancement_log": [
+      "[1] 清洗: 'PD-L1 expression and response to immunotherapy in NSCLC' → 'PD-L1 expression and response to immunotherapy in NSCLC'",
+      "[2] 实体识别: 未识别到医学实体",
+      "[3] 同义词扩展: ['non-small cell lung cancer', 'non-small cell lung carcinoma', 'programmed death-ligand 1', 'cd274']",
+      "[4] 生成 5 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: PD-L1 expression and response to immunotherapy in NSCLC'",
+      "[6] 关键词 query: PD-L1 expression and response to immunotherapy in NSCLC non-small cell lung cancer non-small cell lu...",
+      "[7] 提取过滤: 无"
+    ]
+  },
+  {
+    "original": "Recent 5 years research on PD-1 immunotherapy",
+    "cleaned": "Recent 5 years research on PD-1 immunotherapy",
+    "entities": {},
+    "synonyms": [
+      "programmed cell death protein 1",
+      "pdcd1"
+    ],
+    "query_variants": [
+      "Recent 5 years research on PD-1 immunotherapy",
+      "Recent 5 years research on PD-1 immunotherapy programmed cell death protein 1",
+      "Recent 5 years research on PD-1 immunotherapy pdcd1"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: Recent 5 years research on PD-1 immunotherapy",
+    "keyword_query": "Recent 5 years research on PD-1 immunotherapy programmed cell death protein 1 pdcd1",
+    "filter_conditions": {
+      "year": {
+        "$gte": "2021"
+      }
+    },
+    "enhancement_log": [
+      "[1] 清洗: 'Recent 5 years research on PD-1 immunotherapy' → 'Recent 5 years research on PD-1 immunotherapy'",
+      "[2] 实体识别: 未识别到医学实体",
+      "[3] 同义词扩展: ['programmed cell death protein 1', 'pdcd1']",
+      "[4] 生成 3 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: Recent 5 years research on PD-1 immunotherapy'",
+      "[6] 关键词 query: Recent 5 years research on PD-1 immunotherapy programmed cell death protein 1 pdcd1",
+      "[7] 提取过滤: {'year': {'$gte': '2021'}}"
+    ]
+  },
+  {
+    "original": "Latest 3 years studies on CAR-T cell therapy",
+    "cleaned": "Latest 3 years studies on CAR-T cell therapy",
+    "entities": {},
+    "synonyms": [],
+    "query_variants": [
+      "Latest 3 years studies on CAR-T cell therapy"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: Latest 3 years studies on CAR-T cell therapy",
+    "keyword_query": "Latest 3 years studies on CAR-T cell therapy",
+    "filter_conditions": {
+      "year": {
+        "$gte": "2021"
+      }
+    },
+    "enhancement_log": [
+      "[1] 清洗: 'Latest 3 years studies on CAR-T cell therapy' → 'Latest 3 years studies on CAR-T cell therapy'",
+      "[2] 实体识别: 未识别到医学实体",
+      "[3] 同义词扩展: 无",
+      "[4] 生成 1 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: Latest 3 years studies on CAR-T cell therapy'",
+      "[6] 关键词 query: Latest 3 years studies on CAR-T cell therapy",
+      "[7] 提取过滤: {'year': {'$gte': '2021'}}"
+    ]
+  },
+  {
+    "original": "Past 10 years clinical trials for Alzheimer's disease",
+    "cleaned": "Past 10 years clinical trials for Alzheimer's disease",
+    "entities": {
+      "disease": [
+        "alzheimer's disease"
+      ]
+    },
+    "synonyms": [],
+    "query_variants": [
+      "Past 10 years clinical trials for Alzheimer's disease"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: Past 10 years clinical trials for Alzheimer's disease",
+    "keyword_query": "Past 10 years clinical trials for Alzheimer's disease",
+    "filter_conditions": {
+      "year": {
+        "$gte": "2016"
+      }
+    },
+    "enhancement_log": [
+      "[1] 清洗: \"Past 10 years clinical trials for Alzheimer's disease\" → \"Past 10 years clinical trials for Alzheimer's disease\"",
+      "[2] 实体识别: {'disease': [\"alzheimer's disease\"]}",
+      "[3] 同义词扩展: 无",
+      "[4] 生成 1 个查询版本",
+      "[5] 向量 query: \"Represent this question for searching relevant passages: Past 10 years clinical trials for Alzheimer's disease\"",
+      "[6] 关键词 query: Past 10 years clinical trials for Alzheimer's disease",
+      "[7] 提取过滤: {'year': {'$gte': '2016'}}"
+    ]
+  },
+  {
+    "original": "Clinical trials published since 2015 for rheumatoid arthritis",
+    "cleaned": "Clinical trials published since 2015 for rheumatoid arthritis",
+    "entities": {
+      "disease": [
+        "arthritis"
+      ]
+    },
+    "synonyms": [],
+    "query_variants": [
+      "Clinical trials published since 2015 for rheumatoid arthritis"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: Clinical trials published since 2015 for rheumatoid arthritis",
+    "keyword_query": "Clinical trials published since 2015 for rheumatoid arthritis",
+    "filter_conditions": {
+      "year": {
+        "$gte": "2015"
+      }
+    },
+    "enhancement_log": [
+      "[1] 清洗: 'Clinical trials published since 2015 for rheumatoid arthritis' → 'Clinical trials published since 2015 for rheumatoid arthritis'",
+      "[2] 实体识别: {'disease': ['arthritis']}",
+      "[3] 同义词扩展: 无",
+      "[4] 生成 1 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: Clinical trials published since 2015 for rheumatoid arthritis'",
+      "[6] 关键词 query: Clinical trials published since 2015 for rheumatoid arthritis",
+      "[7] 提取过滤: {'year': {'$gte': '2015'}}"
+    ]
+  },
+  {
+    "original": "Landmark studies in 2019 about GLP-1 agonists",
+    "cleaned": "Landmark studies in 2019 about GLP-1 agonists",
+    "entities": {},
+    "synonyms": [
+      "glucagon-like peptide 1 receptor agonist",
+      "glp-1 receptor agonist"
+    ],
+    "query_variants": [
+      "Landmark studies in 2019 about GLP-1 agonists",
+      "Landmark studies in 2019 about GLP-1 agonists glucagon-like peptide 1 receptor agonist",
+      "Landmark studies in 2019 about GLP-1 agonists glp-1 receptor agonist"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: Landmark studies in 2019 about GLP-1 agonists",
+    "keyword_query": "Landmark studies in 2019 about GLP-1 agonists glucagon-like peptide 1 receptor agonist glp-1 receptor agonist",
+    "filter_conditions": {
+      "year": {
+        "$gte": "2019"
+      }
+    },
+    "enhancement_log": [
+      "[1] 清洗: 'Landmark studies in 2019 about GLP-1 agonists' → 'Landmark studies in 2019 about GLP-1 agonists'",
+      "[2] 实体识别: 未识别到医学实体",
+      "[3] 同义词扩展: ['glucagon-like peptide 1 receptor agonist', 'glp-1 receptor agonist']",
+      "[4] 生成 3 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: Landmark studies in 2019 about GLP-1 agonists'",
+      "[6] 关键词 query: Landmark studies in 2019 about GLP-1 agonists glucagon-like peptide 1 receptor agonist glp-1 recepto...",
+      "[7] 提取过滤: {'year': {'$gte': '2019'}}"
+    ]
+  },
+  {
+    "original": "近五年关于 PD-1 免疫疗法的研究进展",
+    "cleaned": "近五年关于 PD-1 免疫疗法的研究进展",
+    "entities": {},
+    "synonyms": [
+      "programmed cell death protein 1",
+      "pdcd1"
+    ],
+    "query_variants": [
+      "近五年关于 PD-1 免疫疗法的研究进展",
+      "近五年关于 PD-1 免疫疗法的研究进展 pdcd1",
+      "近五年关于 PD-1 免疫疗法的研究进展 programmed cell death protein 1"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: 近五年关于 PD-1 免疫疗法的研究进展",
+    "keyword_query": "近五年关于 PD-1 免疫疗法的研究进展 programmed cell death protein 1 pdcd1",
+    "filter_conditions": {
+      "year": {
+        "$gte": "2021"
+      }
+    },
+    "enhancement_log": [
+      "[1] 清洗: '近五年关于 PD-1 免疫疗法的研究进展' → '近五年关于 PD-1 免疫疗法的研究进展'",
+      "[2] 实体识别: 未识别到医学实体",
+      "[3] 同义词扩展: ['programmed cell death protein 1', 'pdcd1']",
+      "[4] 生成 3 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: 近五年关于 PD-1 免疫疗法的研究进展'",
+      "[6] 关键词 query: 近五年关于 PD-1 免疫疗法的研究进展 programmed cell death protein 1 pdcd1",
+      "[7] 提取过滤: {'year': {'$gte': '2021'}}"
+    ]
+  },
+  {
+    "original": "近三年 mRNA 疫苗的研究进展",
+    "cleaned": "近三年 mRNA 疫苗的研究进展",
+    "entities": {},
+    "synonyms": [],
+    "query_variants": [
+      "近三年 mRNA 疫苗的研究进展"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: 近三年 mRNA 疫苗的研究进展",
+    "keyword_query": "近三年 mRNA 疫苗的研究进展",
+    "filter_conditions": {
+      "year": {
+        "$gte": "2021"
+      }
+    },
+    "enhancement_log": [
+      "[1] 清洗: '近三年 mRNA 疫苗的研究进展' → '近三年 mRNA 疫苗的研究进展'",
+      "[2] 实体识别: 未识别到医学实体",
+      "[3] 同义词扩展: 无",
+      "[4] 生成 1 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: 近三年 mRNA 疫苗的研究进展'",
+      "[6] 关键词 query: 近三年 mRNA 疫苗的研究进展",
+      "[7] 提取过滤: {'year': {'$gte': '2021'}}"
+    ]
+  },
+  {
+    "original": "2020年以来关于新冠后遗症的研究",
+    "cleaned": "2020年以来关于新冠后遗症的研究",
+    "entities": {},
+    "synonyms": [
+      "新冠肺炎",
+      "covid-19",
+      "新型冠状病毒肺炎"
+    ],
+    "query_variants": [
+      "2020年以来关于新冠后遗症的研究 covid-19",
+      "2020年以来关于新冠后遗症的研究",
+      "2020年以来关于新冠后遗症的研究 新型冠状病毒肺炎",
+      "2020年以来关于新冠后遗症的研究 新冠肺炎"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: 2020年以来关于新冠后遗症的研究",
+    "keyword_query": "2020年以来关于新冠后遗症的研究 新冠肺炎 covid-19 新型冠状病毒肺炎",
+    "filter_conditions": {
+      "year": {
+        "$gte": "2020"
+      }
+    },
+    "enhancement_log": [
+      "[1] 清洗: '2020年以来关于新冠后遗症的研究' → '2020年以来关于新冠后遗症的研究'",
+      "[2] 实体识别: 未识别到医学实体",
+      "[3] 同义词扩展: ['新冠肺炎', 'covid-19', '新型冠状病毒肺炎']",
+      "[4] 生成 4 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: 2020年以来关于新冠后遗症的研究'",
+      "[6] 关键词 query: 2020年以来关于新冠后遗症的研究 新冠肺炎 covid-19 新型冠状病毒肺炎",
+      "[7] 提取过滤: {'year': {'$gte': '2020'}}"
+    ]
+  },
+  {
+    "original": "What did Nature publish about CRISPR?",
+    "cleaned": "What did Nature publish about CRISPR?",
+    "entities": {},
+    "synonyms": [],
+    "query_variants": [
+      "What did Nature publish about CRISPR?"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: What did Nature publish about CRISPR?",
+    "keyword_query": "What did Nature publish about CRISPR?",
+    "filter_conditions": {
+      "journal_keyword": "nature"
+    },
+    "enhancement_log": [
+      "[1] 清洗: 'What did Nature publish about CRISPR?' → 'What did Nature publish about CRISPR?'",
+      "[2] 实体识别: 未识别到医学实体",
+      "[3] 同义词扩展: 无",
+      "[4] 生成 1 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: What did Nature publish about CRISPR?'",
+      "[6] 关键词 query: What did Nature publish about CRISPR?",
+      "[7] 提取过滤: {'journal_keyword': 'nature'}"
+    ]
+  },
+  {
+    "original": "Recent NEJM papers on COVID-19 vaccine efficacy",
+    "cleaned": "Recent NEJM papers on COVID-19 vaccine efficacy",
+    "entities": {},
+    "synonyms": [
+      "covid-19",
+      "sars-cov-2",
+      "coronavirus disease 2019"
+    ],
+    "query_variants": [
+      "Recent NEJM papers on COVID-19 vaccine efficacy coronavirus disease 2019",
+      "Recent NEJM papers on COVID-19 vaccine efficacy covid-19",
+      "Recent NEJM papers on COVID-19 vaccine efficacy sars-cov-2",
+      "Recent NEJM papers on COVID-19 vaccine efficacy"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: Recent NEJM papers on COVID-19 vaccine efficacy",
+    "keyword_query": "Recent NEJM papers on COVID-19 vaccine efficacy covid-19 sars-cov-2 coronavirus disease 2019",
+    "filter_conditions": {
+      "year": {
+        "$gte": "2021"
+      },
+      "journal_keyword": "nejm"
+    },
+    "enhancement_log": [
+      "[1] 清洗: 'Recent NEJM papers on COVID-19 vaccine efficacy' → 'Recent NEJM papers on COVID-19 vaccine efficacy'",
+      "[2] 实体识别: 未识别到医学实体",
+      "[3] 同义词扩展: ['covid-19', 'sars-cov-2', 'coronavirus disease 2019']",
+      "[4] 生成 4 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: Recent NEJM papers on COVID-19 vaccine efficacy'",
+      "[6] 关键词 query: Recent NEJM papers on COVID-19 vaccine efficacy covid-19 sars-cov-2 coronavirus disease 2019",
+      "[7] 提取过滤: {'year': {'$gte': '2021'}, 'journal_keyword': 'nejm'}"
+    ]
+  },
+  {
+    "original": "Lancet reviews on gut microbiome and metabolic disease",
+    "cleaned": "Lancet reviews on gut microbiome and metabolic disease",
+    "entities": {},
+    "synonyms": [],
+    "query_variants": [
+      "Lancet reviews on gut microbiome and metabolic disease"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: Lancet reviews on gut microbiome and metabolic disease",
+    "keyword_query": "Lancet reviews on gut microbiome and metabolic disease",
+    "filter_conditions": {
+      "journal_keyword": "lancet"
+    },
+    "enhancement_log": [
+      "[1] 清洗: 'Lancet reviews on gut microbiome and metabolic disease' → 'Lancet reviews on gut microbiome and metabolic disease'",
+      "[2] 实体识别: 未识别到医学实体",
+      "[3] 同义词扩展: 无",
+      "[4] 生成 1 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: Lancet reviews on gut microbiome and metabolic disease'",
+      "[6] 关键词 query: Lancet reviews on gut microbiome and metabolic disease",
+      "[7] 提取过滤: {'journal_keyword': 'lancet'}"
+    ]
+  },
+  {
+    "original": "Cell published studies on p53 mutation in colorectal cancer",
+    "cleaned": "Cell published studies on p53 mutation in colorectal cancer",
+    "entities": {
+      "disease": [
+        "cancer"
+      ],
+      "gene_protein": [
+        "p53"
+      ]
+    },
+    "synonyms": [
+      "tumor protein p53",
+      "tp53"
+    ],
+    "query_variants": [
+      "Cell published studies on p53 mutation in colorectal cancer",
+      "Cell published studies on p53 mutation in colorectal cancer tumor protein p53",
+      "Cell published studies on p53 mutation in colorectal cancer tp53"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: Cell published studies on p53 mutation in colorectal cancer",
+    "keyword_query": "Cell published studies on p53 mutation in colorectal cancer tumor protein p53 tp53",
+    "filter_conditions": {
+      "journal_keyword": "cell"
+    },
+    "enhancement_log": [
+      "[1] 清洗: 'Cell published studies on p53 mutation in colorectal cancer' → 'Cell published studies on p53 mutation in colorectal cancer'",
+      "[2] 实体识别: {'disease': ['cancer'], 'gene_protein': ['p53']}",
+      "[3] 同义词扩展: ['tumor protein p53', 'tp53']",
+      "[4] 生成 3 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: Cell published studies on p53 mutation in colorectal cancer'",
+      "[6] 关键词 query: Cell published studies on p53 mutation in colorectal cancer tumor protein p53 tp53",
+      "[7] 提取过滤: {'journal_keyword': 'cell'}"
+    ]
+  },
+  {
+    "original": "Science articles on alpha-synuclein and Parkinson's disease",
+    "cleaned": "Science articles on alpha-synuclein and Parkinson's disease",
+    "entities": {
+      "disease": [
+        "parkinson's disease"
+      ]
+    },
+    "synonyms": [],
+    "query_variants": [
+      "Science articles on alpha-synuclein and Parkinson's disease"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: Science articles on alpha-synuclein and Parkinson's disease",
+    "keyword_query": "Science articles on alpha-synuclein and Parkinson's disease",
+    "filter_conditions": {
+      "journal_keyword": "science"
+    },
+    "enhancement_log": [
+      "[1] 清洗: \"Science articles on alpha-synuclein and Parkinson's disease\" → \"Science articles on alpha-synuclein and Parkinson's disease\"",
+      "[2] 实体识别: {'disease': [\"parkinson's disease\"]}",
+      "[3] 同义词扩展: 无",
+      "[4] 生成 1 个查询版本",
+      "[5] 向量 query: \"Represent this question for searching relevant passages: Science articles on alpha-synuclein and Parkinson's disease\"",
+      "[6] 关键词 query: Science articles on alpha-synuclein and Parkinson's disease",
+      "[7] 提取过滤: {'journal_keyword': 'science'}"
+    ]
+  },
+  {
+    "original": "Impact of HbA1c control on cardiovascular outcomes in T2DM patients with hypertension",
+    "cleaned": "Impact of HbA1c control on cardiovascular outcomes in T2DM patients with hypertension",
+    "entities": {
+      "disease": [
+        "hypertension"
+      ],
+      "anatomy": [
+        "cardiovascular"
+      ]
+    },
+    "synonyms": [
+      "type 2 diabetes mellitus",
+      "type 2 diabetes",
+      "non-insulin dependent diabetes"
+    ],
+    "query_variants": [
+      "Impact of HbA1c control on cardiovascular outcomes in T2DM patients with hypertension type 2 diabetes mellitus",
+      "Impact of HbA1c control on cardiovascular outcomes in T2DM patients with hypertension type 2 diabetes",
+      "Impact of HbA1c control on cardiovascular outcomes in T2DM patients with hypertension",
+      "Impact of HbA1c control on cardiovascular outcomes in T2DM patients with hypertension non-insulin dependent diabetes"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: Impact of HbA1c control on cardiovascular outcomes in T2DM patients with hypertension",
+    "keyword_query": "Impact of HbA1c control on cardiovascular outcomes in T2DM patients with hypertension type 2 diabetes mellitus type 2 diabetes non-insulin dependent diabetes",
+    "filter_conditions": {},
+    "enhancement_log": [
+      "[1] 清洗: 'Impact of HbA1c control on cardiovascular outcomes in T2DM patients with hypertension' → 'Impact of HbA1c control on cardiovascular outcomes in T2DM patients with hypertension'",
+      "[2] 实体识别: {'disease': ['hypertension'], 'anatomy': ['cardiovascular']}",
+      "[3] 同义词扩展: ['type 2 diabetes mellitus', 'type 2 diabetes', 'non-insulin dependent diabetes']",
+      "[4] 生成 4 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: Impact of HbA1c control on cardiovascular outcomes in T2DM patients with hypertension'",
+      "[6] 关键词 query: Impact of HbA1c control on cardiovascular outcomes in T2DM patients with hypertension type 2 diabete...",
+      "[7] 提取过滤: 无"
+    ]
+  },
+  {
+    "original": "Metformin and vitamin B12 deficiency in diabetic patients",
+    "cleaned": "Metformin and vitamin B12 deficiency in diabetic patients",
+    "entities": {
+      "drug": [
+        "metformin"
+      ]
+    },
+    "synonyms": [],
+    "query_variants": [
+      "Metformin and vitamin B12 deficiency in diabetic patients"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: Metformin and vitamin B12 deficiency in diabetic patients",
+    "keyword_query": "Metformin and vitamin B12 deficiency in diabetic patients",
+    "filter_conditions": {},
+    "enhancement_log": [
+      "[1] 清洗: 'Metformin and vitamin B12 deficiency in diabetic patients' → 'Metformin and vitamin B12 deficiency in diabetic patients'",
+      "[2] 实体识别: {'drug': ['metformin']}",
+      "[3] 同义词扩展: 无",
+      "[4] 生成 1 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: Metformin and vitamin B12 deficiency in diabetic patients'",
+      "[6] 关键词 query: Metformin and vitamin B12 deficiency in diabetic patients",
+      "[7] 提取过滤: 无"
+    ]
+  },
+  {
+    "original": "ctDNA monitoring for EGFR mutant NSCLC targeted therapy response",
+    "cleaned": "ctDNA monitoring for EGFR mutant NSCLC targeted therapy response",
+    "entities": {
+      "gene_protein": [
+        "egfr"
+      ]
+    },
+    "synonyms": [
+      "non-small cell lung cancer",
+      "non-small cell lung carcinoma",
+      "epidermal growth factor receptor"
+    ],
+    "query_variants": [
+      "ctDNA monitoring for EGFR mutant NSCLC targeted therapy response non-small cell lung carcinoma",
+      "ctDNA monitoring for EGFR mutant NSCLC targeted therapy response non-small cell lung cancer",
+      "ctDNA monitoring for EGFR mutant NSCLC targeted therapy response epidermal growth factor receptor",
+      "ctDNA monitoring for EGFR mutant NSCLC targeted therapy response"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: ctDNA monitoring for EGFR mutant NSCLC targeted therapy response",
+    "keyword_query": "ctDNA monitoring for EGFR mutant NSCLC targeted therapy response non-small cell lung cancer non-small cell lung carcinoma epidermal growth factor receptor",
+    "filter_conditions": {},
+    "enhancement_log": [
+      "[1] 清洗: 'ctDNA monitoring for EGFR mutant NSCLC targeted therapy response' → 'ctDNA monitoring for EGFR mutant NSCLC targeted therapy response'",
+      "[2] 实体识别: {'gene_protein': ['egfr']}",
+      "[3] 同义词扩展: ['non-small cell lung cancer', 'non-small cell lung carcinoma', 'epidermal growth factor receptor']",
+      "[4] 生成 4 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: ctDNA monitoring for EGFR mutant NSCLC targeted therapy response'",
+      "[6] 关键词 query: ctDNA monitoring for EGFR mutant NSCLC targeted therapy response non-small cell lung cancer non-smal...",
+      "[7] 提取过滤: 无"
+    ]
+  },
+  {
+    "original": "Incidence and mortality trends of pancreatic cancer globally",
+    "cleaned": "Incidence and mortality trends of pancreatic cancer globally",
+    "entities": {
+      "disease": [
+        "cancer"
+      ]
+    },
+    "synonyms": [],
+    "query_variants": [
+      "Incidence and mortality trends of pancreatic cancer globally"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: Incidence and mortality trends of pancreatic cancer globally",
+    "keyword_query": "Incidence and mortality trends of pancreatic cancer globally",
+    "filter_conditions": {},
+    "enhancement_log": [
+      "[1] 清洗: 'Incidence and mortality trends of pancreatic cancer globally' → 'Incidence and mortality trends of pancreatic cancer globally'",
+      "[2] 实体识别: {'disease': ['cancer']}",
+      "[3] 同义词扩展: 无",
+      "[4] 生成 1 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: Incidence and mortality trends of pancreatic cancer globally'",
+      "[6] 关键词 query: Incidence and mortality trends of pancreatic cancer globally",
+      "[7] 提取过滤: 无"
+    ]
+  },
+  {
+    "original": "Subgroup analysis of sex differences in statin efficacy for CVD prevention",
+    "cleaned": "Subgroup analysis of sex differences in statin efficacy for CVD prevention",
+    "entities": {},
+    "synonyms": [
+      "hmg-coa reductase inhibitor",
+      "statin drug",
+      "cardiovascular disease"
+    ],
+    "query_variants": [
+      "Subgroup analysis of sex differences in statin efficacy for CVD prevention hmg-coa reductase inhibitor",
+      "Subgroup analysis of sex differences in statin efficacy for CVD prevention statin drug",
+      "Subgroup analysis of sex differences in statin efficacy for CVD prevention",
+      "Subgroup analysis of sex differences in statin efficacy for CVD prevention cardiovascular disease"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: Subgroup analysis of sex differences in statin efficacy for CVD prevention",
+    "keyword_query": "Subgroup analysis of sex differences in statin efficacy for CVD prevention hmg-coa reductase inhibitor statin drug cardiovascular disease",
+    "filter_conditions": {},
+    "enhancement_log": [
+      "[1] 清洗: 'Subgroup analysis of sex differences in statin efficacy for CVD prevention' → 'Subgroup analysis of sex differences in statin efficacy for CVD prevention'",
+      "[2] 实体识别: 未识别到医学实体",
+      "[3] 同义词扩展: ['hmg-coa reductase inhibitor', 'statin drug', 'cardiovascular disease']",
+      "[4] 生成 4 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: Subgroup analysis of sex differences in statin efficacy for CVD prevention'",
+      "[6] 关键词 query: Subgroup analysis of sex differences in statin efficacy for CVD prevention hmg-coa reductase inhibit...",
+      "[7] 提取过滤: 无"
+    ]
+  },
+  {
+    "original": "Hazard ratio and overall survival in immunotherapy trials",
+    "cleaned": "Hazard ratio and overall survival in immunotherapy trials",
+    "entities": {},
+    "synonyms": [],
+    "query_variants": [
+      "Hazard ratio and overall survival in immunotherapy trials"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: Hazard ratio and overall survival in immunotherapy trials",
+    "keyword_query": "Hazard ratio and overall survival in immunotherapy trials",
+    "filter_conditions": {},
+    "enhancement_log": [
+      "[1] 清洗: 'Hazard ratio and overall survival in immunotherapy trials' → 'Hazard ratio and overall survival in immunotherapy trials'",
+      "[2] 实体识别: 未识别到医学实体",
+      "[3] 同义词扩展: 无",
+      "[4] 生成 1 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: Hazard ratio and overall survival in immunotherapy trials'",
+      "[6] 关键词 query: Hazard ratio and overall survival in immunotherapy trials",
+      "[7] 提取过滤: 无"
+    ]
+  },
+  {
+    "original": "TMB and PD-1/PD-L1 inhibitor response correlation",
+    "cleaned": "TMB and PD-1/PD-L1 inhibitor response correlation",
+    "entities": {},
+    "synonyms": [
+      "programmed death-ligand 1",
+      "cd274",
+      "programmed cell death protein 1",
+      "pdcd1"
+    ],
+    "query_variants": [
+      "TMB and PD-1/PD-L1 inhibitor response correlation cd274",
+      "TMB and PD-1/PD-L1 inhibitor response correlation",
+      "TMB and PD-1/PD-L1 inhibitor response correlation pdcd1",
+      "TMB and PD-1/PD-L1 inhibitor response correlation programmed death-ligand 1",
+      "TMB and PD-1/PD-L1 inhibitor response correlation programmed cell death protein 1"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: TMB and PD-1/PD-L1 inhibitor response correlation",
+    "keyword_query": "TMB and PD-1/PD-L1 inhibitor response correlation programmed death-ligand 1 cd274 programmed cell death protein 1 pdcd1",
+    "filter_conditions": {},
+    "enhancement_log": [
+      "[1] 清洗: 'TMB and PD-1/PD-L1 inhibitor response correlation' → 'TMB and PD-1/PD-L1 inhibitor response correlation'",
+      "[2] 实体识别: 未识别到医学实体",
+      "[3] 同义词扩展: ['programmed death-ligand 1', 'cd274', 'programmed cell death protein 1', 'pdcd1']",
+      "[4] 生成 5 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: TMB and PD-1/PD-L1 inhibitor response correlation'",
+      "[6] 关键词 query: TMB and PD-1/PD-L1 inhibitor response correlation programmed death-ligand 1 cd274 programmed cell de...",
+      "[7] 提取过滤: 无"
+    ]
+  },
+  {
+    "original": "Meta-analysis of ACE inhibitors in heart failure with reduced ejection fraction",
+    "cleaned": "Meta-analysis of ACE inhibitors in heart failure with reduced ejection fraction",
+    "entities": {
+      "disease": [
+        "heart failure"
+      ],
+      "anatomy": [
+        "heart"
+      ]
+    },
+    "synonyms": [],
+    "query_variants": [
+      "Meta-analysis of ACE inhibitors in heart failure with reduced ejection fraction"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: Meta-analysis of ACE inhibitors in heart failure with reduced ejection fraction",
+    "keyword_query": "Meta-analysis of ACE inhibitors in heart failure with reduced ejection fraction",
+    "filter_conditions": {},
+    "enhancement_log": [
+      "[1] 清洗: 'Meta-analysis of ACE inhibitors in heart failure with reduced ejection fraction' → 'Meta-analysis of ACE inhibitors in heart failure with reduced ejection fraction'",
+      "[2] 实体识别: {'disease': ['heart failure'], 'anatomy': ['heart']}",
+      "[3] 同义词扩展: 无",
+      "[4] 生成 1 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: Meta-analysis of ACE inhibitors in heart failure with reduced ejection fraction'",
+      "[6] 关键词 query: Meta-analysis of ACE inhibitors in heart failure with reduced ejection fraction",
+      "[7] 提取过滤: 无"
+    ]
+  },
+  {
+    "original": "Recent advances in gene therapy for rare diseases",
+    "cleaned": "Recent advances in gene therapy for rare diseases",
+    "entities": {},
+    "synonyms": [],
+    "query_variants": [
+      "Recent advances in gene therapy for rare diseases"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: Recent advances in gene therapy for rare diseases",
+    "keyword_query": "Recent advances in gene therapy for rare diseases",
+    "filter_conditions": {
+      "year": {
+        "$gte": "2021"
+      }
+    },
+    "enhancement_log": [
+      "[1] 清洗: 'Recent advances in gene therapy for rare diseases' → 'Recent advances in gene therapy for rare diseases'",
+      "[2] 实体识别: 未识别到医学实体",
+      "[3] 同义词扩展: 无",
+      "[4] 生成 1 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: Recent advances in gene therapy for rare diseases'",
+      "[6] 关键词 query: Recent advances in gene therapy for rare diseases",
+      "[7] 提取过滤: {'year': {'$gte': '2021'}}"
+    ]
+  },
+  {
+    "original": "Cell reports on novel drug delivery systems",
+    "cleaned": "Cell reports on novel drug delivery systems",
+    "entities": {},
+    "synonyms": [],
+    "query_variants": [
+      "Cell reports on novel drug delivery systems"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: Cell reports on novel drug delivery systems",
+    "keyword_query": "Cell reports on novel drug delivery systems",
+    "filter_conditions": {
+      "journal_keyword": "cell"
+    },
+    "enhancement_log": [
+      "[1] 清洗: 'Cell reports on novel drug delivery systems' → 'Cell reports on novel drug delivery systems'",
+      "[2] 实体识别: 未识别到医学实体",
+      "[3] 同义词扩展: 无",
+      "[4] 生成 1 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: Cell reports on novel drug delivery systems'",
+      "[6] 关键词 query: Cell reports on novel drug delivery systems",
+      "[7] 提取过滤: {'journal_keyword': 'cell'}"
+    ]
+  },
+  {
+    "original": "ASA and bleeding risk in cardiovascular patients",
+    "cleaned": "ASA and bleeding risk in cardiovascular patients",
+    "entities": {
+      "anatomy": [
+        "cardiovascular"
+      ]
+    },
+    "synonyms": [
+      "aspirin",
+      "acetylsalicylic acid"
+    ],
+    "query_variants": [
+      "ASA and bleeding risk in cardiovascular patients",
+      "ASA and bleeding risk in cardiovascular patients acetylsalicylic acid",
+      "ASA and bleeding risk in cardiovascular patients aspirin"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: ASA and bleeding risk in cardiovascular patients",
+    "keyword_query": "ASA and bleeding risk in cardiovascular patients aspirin acetylsalicylic acid",
+    "filter_conditions": {},
+    "enhancement_log": [
+      "[1] 清洗: 'ASA and bleeding risk in cardiovascular patients' → 'ASA and bleeding risk in cardiovascular patients'",
+      "[2] 实体识别: {'anatomy': ['cardiovascular']}",
+      "[3] 同义词扩展: ['aspirin', 'acetylsalicylic acid']",
+      "[4] 生成 3 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: ASA and bleeding risk in cardiovascular patients'",
+      "[6] 关键词 query: ASA and bleeding risk in cardiovascular patients aspirin acetylsalicylic acid",
+      "[7] 提取过滤: 无"
+    ]
+  },
+  {
+    "original": "高血压患者用 ARB 治疗的效果如何?",
+    "cleaned": "高血压患者用 ARB 治疗的效果如何?",
+    "entities": {},
+    "synonyms": [
+      "angiotensin receptor blocker",
+      "高血压病",
+      "血压高",
+      "hypertension"
+    ],
+    "query_variants": [
+      "高血压患者用 ARB 治疗的效果如何? hypertension",
+      "高血压患者用 ARB 治疗的效果如何?",
+      "高血压患者用 ARB 治疗的效果如何? 血压高",
+      "高血压患者用 ARB 治疗的效果如何? angiotensin receptor blocker",
+      "高血压患者用 ARB 治疗的效果如何? 高血压病"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: 高血压患者用 ARB 治疗的效果如何?",
+    "keyword_query": "高血压患者用 ARB 治疗的效果如何? angiotensin receptor blocker 高血压病 血压高 hypertension",
+    "filter_conditions": {},
+    "enhancement_log": [
+      "[1] 清洗: '高血压患者用 ARB 治疗的效果如何?' → '高血压患者用 ARB 治疗的效果如何?'",
+      "[2] 实体识别: 未识别到医学实体",
+      "[3] 同义词扩展: ['angiotensin receptor blocker', '高血压病', '血压高', 'hypertension']",
+      "[4] 生成 5 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: 高血压患者用 ARB 治疗的效果如何?'",
+      "[6] 关键词 query: 高血压患者用 ARB 治疗的效果如何? angiotensin receptor blocker 高血压病 血压高 hypertension",
+      "[7] 提取过滤: 无"
+    ]
+  },
+  {
+    "original": "Myocardial infarction with ST-segment elevation treatment guidelines",
+    "cleaned": "Myocardial infarction with ST-segment elevation treatment guidelines",
+    "entities": {
+      "disease": [
+        "myocardial infarction"
+      ]
+    },
+    "synonyms": [],
+    "query_variants": [
+      "Myocardial infarction with ST-segment elevation treatment guidelines"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: Myocardial infarction with ST-segment elevation treatment guidelines",
+    "keyword_query": "Myocardial infarction with ST-segment elevation treatment guidelines",
+    "filter_conditions": {},
+    "enhancement_log": [
+      "[1] 清洗: 'Myocardial infarction with ST-segment elevation treatment guidelines' → 'Myocardial infarction with ST-segment elevation treatment guidelines'",
+      "[2] 实体识别: {'disease': ['myocardial infarction']}",
+      "[3] 同义词扩展: 无",
+      "[4] 生成 1 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: Myocardial infarction with ST-segment elevation treatment guidelines'",
+      "[6] 关键词 query: Myocardial infarction with ST-segment elevation treatment guidelines",
+      "[7] 提取过滤: 无"
+    ]
+  },
+  {
+    "original": "Which statins are NOT associated with increased diabetes risk?",
+    "cleaned": "Which statins are NOT associated with increased diabetes risk?",
+    "entities": {
+      "disease": [
+        "diabetes"
+      ]
+    },
+    "synonyms": [],
+    "query_variants": [
+      "Which statins are NOT associated with increased diabetes risk?"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: Which statins are NOT associated with increased diabetes risk?",
+    "keyword_query": "Which statins are NOT associated with increased diabetes risk?",
+    "filter_conditions": {},
+    "enhancement_log": [
+      "[1] 清洗: 'Which statins are NOT associated with increased diabetes risk?' → 'Which statins are NOT associated with increased diabetes risk?'",
+      "[2] 实体识别: {'disease': ['diabetes']}",
+      "[3] 同义词扩展: 无",
+      "[4] 生成 1 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: Which statins are NOT associated with increased diabetes risk?'",
+      "[6] 关键词 query: Which statins are NOT associated with increased diabetes risk?",
+      "[7] 提取过滤: 无"
+    ]
+  },
+  {
+    "original": "我在查找关于二型糖尿病患者使用恩格列净（empagliflozin）对心血管结局影响的随机对照试验，尤其是近三年内发表在 NEJM 或 Lancet 上的研究",
+    "cleaned": "我在查找关于二型糖尿病患者使用恩格列净（empagliflozin）对心血管结局影响的随机对照试验，尤其是近三年内发表在 NEJM 或 Lancet 上的研究",
+    "entities": {
+      "drug": [
+        "empagliflozin"
+      ],
+      "disease_cn": [
+        "病",
+        "糖尿病"
+      ],
+      "anatomy_cn": [
+        "心"
+      ]
+    },
+    "synonyms": [
+      "糖尿病 mellitus",
+      "消渴症",
+      "diabetes",
+      "2型糖尿病",
+      "2型糖尿病 mellitus",
+      "type 2 diabetes",
+      "empagliflozin"
+    ],
+    "query_variants": [
+      "我在查找关于二型糖尿病患者使用恩格列净（empagliflozin）对心血管结局影响的随机对照试验，尤其是近三年内发表在 NEJM 或 Lancet 上的研究 2型糖尿病",
+      "我在查找关于二型糖尿病患者使用恩格列净（empagliflozin）对心血管结局影响的随机对照试验，尤其是近三年内发表在 NEJM 或 Lancet 上的研究 empagliflozin",
+      "我在查找关于二型糖尿病患者使用恩格列净（empagliflozin）对心血管结局影响的随机对照试验，尤其是近三年内发表在 NEJM 或 Lancet 上的研究 糖尿病 mellitus",
+      "我在查找关于二型糖尿病患者使用恩格列净（empagliflozin）对心血管结局影响的随机对照试验，尤其是近三年内发表在 NEJM 或 Lancet 上的研究 2型糖尿病 mellitus",
+      "我在查找关于二型糖尿病患者使用恩格列净（empagliflozin）对心血管结局影响的随机对照试验，尤其是近三年内发表在 NEJM 或 Lancet 上的研究",
+      "我在查找关于二型糖尿病患者使用恩格列净（empagliflozin）对心血管结局影响的随机对照试验，尤其是近三年内发表在 NEJM 或 Lancet 上的研究 type 2 diabetes",
+      "我在查找关于二型糖尿病患者使用恩格列净（empagliflozin）对心血管结局影响的随机对照试验，尤其是近三年内发表在 NEJM 或 Lancet 上的研究 diabetes",
+      "我在查找关于二型糖尿病患者使用恩格列净（empagliflozin）对心血管结局影响的随机对照试验，尤其是近三年内发表在 NEJM 或 Lancet 上的研究 消渴症"
+    ],
+    "vector_query": "Represent this question for searching relevant passages: 我在查找关于二型糖尿病患者使用恩格列净（empagliflozin）对心血管结局影响的随机对照试验，尤其是近三年内发表在 NEJM 或 Lancet 上的研究",
+    "keyword_query": "我在查找关于二型糖尿病患者使用恩格列净（empagliflozin）对心血管结局影响的随机对照试验，尤其是近三年内发表在 NEJM 或 Lancet 上的研究 糖尿病 mellitus 消渴症 diabetes 2型糖尿病 2型糖尿病 mellitus type 2 diabetes empagliflozin",
+    "filter_conditions": {
+      "year": {
+        "$gte": "2021"
+      },
+      "journal_keyword": "nejm"
+    },
+    "enhancement_log": [
+      "[1] 清洗: '我在查找关于二型糖尿病患者使用恩格列净（empagliflozin）对心血管结局影响的随机对照试验，尤其是近三年内发表在 NEJM 或 Lancet 上的研究' → '我在查找关于二型糖尿病患者使用恩格列净（empagliflozin）对心血管结局影响的随机对照试验，尤其是近三年内发表在 NEJM 或 Lancet 上的研究'",
+      "[2] 实体识别: {'drug': ['empagliflozin'], 'disease_cn': ['病', '糖尿病'], 'anatomy_cn': ['心']}",
+      "[3] 同义词扩展: ['糖尿病 mellitus', '消渴症', 'diabetes', '2型糖尿病', '2型糖尿病 mellitus', 'type 2 diabetes', 'empagliflozin']",
+      "[4] 生成 8 个查询版本",
+      "[5] 向量 query: 'Represent this question for searching relevant passages: 我在查找关于二型糖尿病患者使用恩格列净（empagliflozin）对心血管结局影响的随机对照试验，尤其是近三年内发表在 NEJM 或 Lancet 上的研究'",
+      "[6] 关键词 query: 我在查找关于二型糖尿病患者使用恩格列净（empagliflozin）对心血管结局影响的随机对照试验，尤其是近三年内发表在 NEJM 或 Lancet 上的研究 糖尿病 mellitus 消渴症 dia...",
+      "[7] 提取过滤: {'year': {'$gte': '2021'}, 'journal_keyword': 'nejm'}"
+    ]
+  }
+]

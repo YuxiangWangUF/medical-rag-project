@@ -1,0 +1,623 @@
+﻿======================================================================
+阶段五:查询理解与增强 — Demo
+======================================================================
+
+──────────────────────────────────────────────────────────────────────
+[Q1] What is ARNO?
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: 'What is ARNO?' → 'What is ARNO?'
+  [2] 实体识别: {'gene_protein': ['arno']}
+  [3] 同义词扩展: 无
+  [4] 生成 1 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: What is ARNO?'
+  [6] 关键词 query: What is ARNO?
+  [7] 提取过滤: 无
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: What is ARNO?...
+     关键词 query 前 80: What is ARNO?...
+
+──────────────────────────────────────────────────────────────────────
+[Q2] What is the effect of MI on heart?
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: 'What is the effect of MI on heart?' → 'What is the effect of MI on heart?'
+  [2] 实体识别: {'anatomy': ['heart']}
+  [3] 同义词扩展: ['myocardial infarction', 'heart attack']
+  [4] 生成 3 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: What is the effect of MI on heart?'
+  [6] 关键词 query: What is the effect of MI on heart? myocardial infarction heart attack
+  [7] 提取过滤: 无
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: What is the effect of M...
+     关键词 query 前 80: What is the effect of MI on heart? myocardial infarction heart attack...
+
+──────────────────────────────────────────────────────────────────────
+[Q3] Does metformin reduce the risk of CVD?
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: 'Does metformin reduce the risk of CVD?' → 'Does metformin reduce the risk of CVD?'
+  [2] 实体识别: {'drug': ['metformin']}
+  [3] 同义词扩展: ['cardiovascular disease']
+  [4] 生成 2 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: Does metformin reduce the risk of CVD?'
+  [6] 关键词 query: Does metformin reduce the risk of CVD? cardiovascular disease
+  [7] 提取过滤: 无
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: Does metformin reduce t...
+     关键词 query 前 80: Does metformin reduce the risk of CVD? cardiovascular disease...
+
+──────────────────────────────────────────────────────────────────────
+[Q4] 二甲双胍对心血管疾病有何影响?
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: '二甲双胍对心血管疾病有何影响?' → '二甲双胍对心血管疾病有何影响?'
+  [2] 实体识别: {'drug_cn': ['二甲双胍']}
+  [3] 同义词扩展: ['metformin', '格华止']
+  [4] 生成 3 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: 二甲双胍对心血管疾病有何影响?'
+  [6] 关键词 query: 二甲双胍对心血管疾病有何影响? metformin 格华止
+  [7] 提取过滤: 无
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: 二甲双胍对心血管疾病有何影响?...
+     关键词 query 前 80: 二甲双胍对心血管疾病有何影响? metformin 格华止...
+
+──────────────────────────────────────────────────────────────────────
+[Q5] 心梗病人能不能用阿司匹林?
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: '心梗病人能不能用阿司匹林?' → '心梗病人能不能用阿司匹林?'
+  [2] 实体识别: {'drug_cn': ['阿司匹林']}
+  [3] 同义词扩展: ['myocardial infarction', '心肌梗死', '心肌梗塞', 'aspirin', '乙酰水杨酸']
+  [4] 生成 6 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: 心梗病人能不能用阿司匹林?'
+  [6] 关键词 query: 心梗病人能不能用阿司匹林? myocardial infarction 心肌梗死 心肌梗塞 aspirin 乙酰水杨酸
+  [7] 提取过滤: 无
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: 心梗病人能不能用阿司匹林?...
+     关键词 query 前 80: 心梗病人能不能用阿司匹林? myocardial infarction 心肌梗死 心肌梗塞 aspirin 乙酰水杨酸...
+
+──────────────────────────────────────────────────────────────────────
+[Q6] What is the role of EGFR mutations in lung cancer?
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: 'What is the role of EGFR mutations in lung cancer?' → 'What is the role of EGFR mutations in lung cancer?'
+  [2] 实体识别: {'disease': ['cancer'], 'gene_protein': ['egfr'], 'anatomy': ['lung']}
+  [3] 同义词扩展: ['epidermal growth factor receptor']
+  [4] 生成 2 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: What is the role of EGFR mutations in lung cancer?'
+  [6] 关键词 query: What is the role of EGFR mutations in lung cancer? epidermal growth factor receptor
+  [7] 提取过滤: 无
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: What is the role of EGF...
+     关键词 query 前 80: What is the role of EGFR mutations in lung cancer? epidermal growth factor recep...
+
+──────────────────────────────────────────────────────────────────────
+[Q7] How does PSA relate to prostate cancer prognosis?
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: 'How does PSA relate to prostate cancer prognosis?' → 'How does PSA relate to prostate cancer prognosis?'
+  [2] 实体识别: {'disease': ['cancer'], 'anatomy': ['prostate']}
+  [3] 同义词扩展: 无
+  [4] 生成 1 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: How does PSA relate to prostate cancer prognosis?'
+  [6] 关键词 query: How does PSA relate to prostate cancer prognosis?
+  [7] 提取过滤: 无
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: How does PSA relate to ...
+     关键词 query 前 80: How does PSA relate to prostate cancer prognosis?...
+
+──────────────────────────────────────────────────────────────────────
+[Q8] What is the mechanism of action of remdesivir against COVID-19?
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: 'What is the mechanism of action of remdesivir against COVID-19?' → 'What is the mechanism of action of remdesivir against COVID-19?'
+  [2] 实体识别: {'drug': ['remdesivir']}
+  [3] 同义词扩展: ['coronavirus disease 2019', 'covid-19', 'sars-cov-2']
+  [4] 生成 4 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: What is the mechanism of action of remdesivir against COVID-19?'
+  [6] 关键词 query: What is the mechanism of action of remdesivir against COVID-19? coronavirus disease 2019 covid-19 sa...
+  [7] 提取过滤: 无
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: What is the mechanism o...
+     关键词 query 前 80: What is the mechanism of action of remdesivir against COVID-19? coronavirus dise...
+
+──────────────────────────────────────────────────────────────────────
+[Q9] 黄芪对免疫功能有什么作用?
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: '黄芪对免疫功能有什么作用?' → '黄芪对免疫功能有什么作用?'
+  [2] 实体识别: 未识别到医学实体
+  [3] 同义词扩展: 无
+  [4] 生成 1 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: 黄芪对免疫功能有什么作用?'
+  [6] 关键词 query: 黄芪对免疫功能有什么作用?
+  [7] 提取过滤: 无
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: 黄芪对免疫功能有什么作用?...
+     关键词 query 前 80: 黄芪对免疫功能有什么作用?...
+
+──────────────────────────────────────────────────────────────────────
+[Q10] 阿司匹林和氯吡格雷联合用药的效果和风险?
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: '阿司匹林和氯吡格雷联合用药的效果和风险?' → '阿司匹林和氯吡格雷联合用药的效果和风险?'
+  [2] 实体识别: {'drug_cn': ['阿司匹林']}
+  [3] 同义词扩展: ['aspirin', 'clopidogrel', '乙酰水杨酸']
+  [4] 生成 4 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: 阿司匹林和氯吡格雷联合用药的效果和风险?'
+  [6] 关键词 query: 阿司匹林和氯吡格雷联合用药的效果和风险? aspirin clopidogrel 乙酰水杨酸
+  [7] 提取过滤: 无
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: 阿司匹林和氯吡格雷联合用药的效果和风险?...
+     关键词 query 前 80: 阿司匹林和氯吡格雷联合用药的效果和风险? aspirin clopidogrel 乙酰水杨酸...
+
+──────────────────────────────────────────────────────────────────────
+[Q11] SGLT2 inhibitors for heart failure in diabetes patients
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: 'SGLT2 inhibitors for heart failure in diabetes patients' → 'SGLT2 inhibitors for heart failure in diabetes patients'
+  [2] 实体识别: {'disease': ['heart failure', 'diabetes'], 'anatomy': ['heart']}
+  [3] 同义词扩展: ['sglt2 inhibitor', 'sodium-glucose cotransporter 2 inhibitor']
+  [4] 生成 3 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: SGLT2 inhibitors for heart failure in diabetes patients'
+  [6] 关键词 query: SGLT2 inhibitors for heart failure in diabetes patients sglt2 inhibitor sodium-glucose cotransporter...
+  [7] 提取过滤: 无
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: SGLT2 inhibitors for he...
+     关键词 query 前 80: SGLT2 inhibitors for heart failure in diabetes patients sglt2 inhibitor sodium-g...
+
+──────────────────────────────────────────────────────────────────────
+[Q12] PD-L1 expression and response to immunotherapy in NSCLC
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: 'PD-L1 expression and response to immunotherapy in NSCLC' → 'PD-L1 expression and response to immunotherapy in NSCLC'
+  [2] 实体识别: 未识别到医学实体
+  [3] 同义词扩展: ['non-small cell lung cancer', 'non-small cell lung carcinoma', 'programmed death-ligand 1', 'cd274']
+  [4] 生成 5 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: PD-L1 expression and response to immunotherapy in NSCLC'
+  [6] 关键词 query: PD-L1 expression and response to immunotherapy in NSCLC non-small cell lung cancer non-small cell lu...
+  [7] 提取过滤: 无
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: PD-L1 expression and re...
+     关键词 query 前 80: PD-L1 expression and response to immunotherapy in NSCLC non-small cell lung canc...
+
+──────────────────────────────────────────────────────────────────────
+[Q13] Recent 5 years research on PD-1 immunotherapy
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: 'Recent 5 years research on PD-1 immunotherapy' → 'Recent 5 years research on PD-1 immunotherapy'
+  [2] 实体识别: 未识别到医学实体
+  [3] 同义词扩展: ['programmed cell death protein 1', 'pdcd1']
+  [4] 生成 3 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: Recent 5 years research on PD-1 immunotherapy'
+  [6] 关键词 query: Recent 5 years research on PD-1 immunotherapy programmed cell death protein 1 pdcd1
+  [7] 提取过滤: {'year': {'$gte': '2021'}}
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: Recent 5 years research...
+     关键词 query 前 80: Recent 5 years research on PD-1 immunotherapy programmed cell death protein 1 pd...
+     过滤: {'year': {'$gte': '2021'}}
+
+──────────────────────────────────────────────────────────────────────
+[Q14] Latest 3 years studies on CAR-T cell therapy
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: 'Latest 3 years studies on CAR-T cell therapy' → 'Latest 3 years studies on CAR-T cell therapy'
+  [2] 实体识别: 未识别到医学实体
+  [3] 同义词扩展: 无
+  [4] 生成 1 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: Latest 3 years studies on CAR-T cell therapy'
+  [6] 关键词 query: Latest 3 years studies on CAR-T cell therapy
+  [7] 提取过滤: {'year': {'$gte': '2021'}}
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: Latest 3 years studies ...
+     关键词 query 前 80: Latest 3 years studies on CAR-T cell therapy...
+     过滤: {'year': {'$gte': '2021'}}
+
+──────────────────────────────────────────────────────────────────────
+[Q15] Past 10 years clinical trials for Alzheimer's disease
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: "Past 10 years clinical trials for Alzheimer's disease" → "Past 10 years clinical trials for Alzheimer's disease"
+  [2] 实体识别: {'disease': ["alzheimer's disease"]}
+  [3] 同义词扩展: 无
+  [4] 生成 1 个查询版本
+  [5] 向量 query: "Represent this question for searching relevant passages: Past 10 years clinical trials for Alzheimer's disease"
+  [6] 关键词 query: Past 10 years clinical trials for Alzheimer's disease
+  [7] 提取过滤: {'year': {'$gte': '2016'}}
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: Past 10 years clinical ...
+     关键词 query 前 80: Past 10 years clinical trials for Alzheimer's disease...
+     过滤: {'year': {'$gte': '2016'}}
+
+──────────────────────────────────────────────────────────────────────
+[Q16] Clinical trials published since 2015 for rheumatoid arthritis
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: 'Clinical trials published since 2015 for rheumatoid arthritis' → 'Clinical trials published since 2015 for rheumatoid arthritis'
+  [2] 实体识别: {'disease': ['arthritis']}
+  [3] 同义词扩展: 无
+  [4] 生成 1 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: Clinical trials published since 2015 for rheumatoid arthritis'
+  [6] 关键词 query: Clinical trials published since 2015 for rheumatoid arthritis
+  [7] 提取过滤: {'year': {'$gte': '2015'}}
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: Clinical trials publish...
+     关键词 query 前 80: Clinical trials published since 2015 for rheumatoid arthritis...
+     过滤: {'year': {'$gte': '2015'}}
+
+──────────────────────────────────────────────────────────────────────
+[Q17] Landmark studies in 2019 about GLP-1 agonists
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: 'Landmark studies in 2019 about GLP-1 agonists' → 'Landmark studies in 2019 about GLP-1 agonists'
+  [2] 实体识别: 未识别到医学实体
+  [3] 同义词扩展: ['glucagon-like peptide 1 receptor agonist', 'glp-1 receptor agonist']
+  [4] 生成 3 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: Landmark studies in 2019 about GLP-1 agonists'
+  [6] 关键词 query: Landmark studies in 2019 about GLP-1 agonists glucagon-like peptide 1 receptor agonist glp-1 recepto...
+  [7] 提取过滤: {'year': {'$gte': '2019'}}
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: Landmark studies in 201...
+     关键词 query 前 80: Landmark studies in 2019 about GLP-1 agonists glucagon-like peptide 1 receptor a...
+     过滤: {'year': {'$gte': '2019'}}
+
+──────────────────────────────────────────────────────────────────────
+[Q18] 近五年关于 PD-1 免疫疗法的研究进展
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: '近五年关于 PD-1 免疫疗法的研究进展' → '近五年关于 PD-1 免疫疗法的研究进展'
+  [2] 实体识别: 未识别到医学实体
+  [3] 同义词扩展: ['programmed cell death protein 1', 'pdcd1']
+  [4] 生成 3 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: 近五年关于 PD-1 免疫疗法的研究进展'
+  [6] 关键词 query: 近五年关于 PD-1 免疫疗法的研究进展 programmed cell death protein 1 pdcd1
+  [7] 提取过滤: {'year': {'$gte': '2021'}}
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: 近五年关于 PD-1 免疫疗法的研究进展...
+     关键词 query 前 80: 近五年关于 PD-1 免疫疗法的研究进展 programmed cell death protein 1 pdcd1...
+     过滤: {'year': {'$gte': '2021'}}
+
+──────────────────────────────────────────────────────────────────────
+[Q19] 近三年 mRNA 疫苗的研究进展
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: '近三年 mRNA 疫苗的研究进展' → '近三年 mRNA 疫苗的研究进展'
+  [2] 实体识别: 未识别到医学实体
+  [3] 同义词扩展: 无
+  [4] 生成 1 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: 近三年 mRNA 疫苗的研究进展'
+  [6] 关键词 query: 近三年 mRNA 疫苗的研究进展
+  [7] 提取过滤: {'year': {'$gte': '2021'}}
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: 近三年 mRNA 疫苗的研究进展...
+     关键词 query 前 80: 近三年 mRNA 疫苗的研究进展...
+     过滤: {'year': {'$gte': '2021'}}
+
+──────────────────────────────────────────────────────────────────────
+[Q20] 2020年以来关于新冠后遗症的研究
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: '2020年以来关于新冠后遗症的研究' → '2020年以来关于新冠后遗症的研究'
+  [2] 实体识别: 未识别到医学实体
+  [3] 同义词扩展: ['新冠肺炎', 'covid-19', '新型冠状病毒肺炎']
+  [4] 生成 4 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: 2020年以来关于新冠后遗症的研究'
+  [6] 关键词 query: 2020年以来关于新冠后遗症的研究 新冠肺炎 covid-19 新型冠状病毒肺炎
+  [7] 提取过滤: {'year': {'$gte': '2020'}}
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: 2020年以来关于新冠后遗症的研究...
+     关键词 query 前 80: 2020年以来关于新冠后遗症的研究 新冠肺炎 covid-19 新型冠状病毒肺炎...
+     过滤: {'year': {'$gte': '2020'}}
+
+──────────────────────────────────────────────────────────────────────
+[Q21] What did Nature publish about CRISPR?
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: 'What did Nature publish about CRISPR?' → 'What did Nature publish about CRISPR?'
+  [2] 实体识别: 未识别到医学实体
+  [3] 同义词扩展: 无
+  [4] 生成 1 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: What did Nature publish about CRISPR?'
+  [6] 关键词 query: What did Nature publish about CRISPR?
+  [7] 提取过滤: {'journal_keyword': 'nature'}
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: What did Nature publish...
+     关键词 query 前 80: What did Nature publish about CRISPR?...
+     过滤: {'journal_keyword': 'nature'}
+
+──────────────────────────────────────────────────────────────────────
+[Q22] Recent NEJM papers on COVID-19 vaccine efficacy
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: 'Recent NEJM papers on COVID-19 vaccine efficacy' → 'Recent NEJM papers on COVID-19 vaccine efficacy'
+  [2] 实体识别: 未识别到医学实体
+  [3] 同义词扩展: ['coronavirus disease 2019', 'covid-19', 'sars-cov-2']
+  [4] 生成 4 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: Recent NEJM papers on COVID-19 vaccine efficacy'
+  [6] 关键词 query: Recent NEJM papers on COVID-19 vaccine efficacy coronavirus disease 2019 covid-19 sars-cov-2
+  [7] 提取过滤: {'year': {'$gte': '2021'}, 'journal_keyword': 'nejm'}
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: Recent NEJM papers on C...
+     关键词 query 前 80: Recent NEJM papers on COVID-19 vaccine efficacy coronavirus disease 2019 covid-1...
+     过滤: {'year': {'$gte': '2021'}, 'journal_keyword': 'nejm'}
+
+──────────────────────────────────────────────────────────────────────
+[Q23] Lancet reviews on gut microbiome and metabolic disease
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: 'Lancet reviews on gut microbiome and metabolic disease' → 'Lancet reviews on gut microbiome and metabolic disease'
+  [2] 实体识别: 未识别到医学实体
+  [3] 同义词扩展: 无
+  [4] 生成 1 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: Lancet reviews on gut microbiome and metabolic disease'
+  [6] 关键词 query: Lancet reviews on gut microbiome and metabolic disease
+  [7] 提取过滤: {'journal_keyword': 'lancet'}
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: Lancet reviews on gut m...
+     关键词 query 前 80: Lancet reviews on gut microbiome and metabolic disease...
+     过滤: {'journal_keyword': 'lancet'}
+
+──────────────────────────────────────────────────────────────────────
+[Q24] Cell published studies on p53 mutation in colorectal cancer
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: 'Cell published studies on p53 mutation in colorectal cancer' → 'Cell published studies on p53 mutation in colorectal cancer'
+  [2] 实体识别: {'disease': ['cancer'], 'gene_protein': ['p53']}
+  [3] 同义词扩展: ['tumor protein p53', 'tp53']
+  [4] 生成 3 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: Cell published studies on p53 mutation in colorectal cancer'
+  [6] 关键词 query: Cell published studies on p53 mutation in colorectal cancer tumor protein p53 tp53
+  [7] 提取过滤: {'journal_keyword': 'cell'}
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: Cell published studies ...
+     关键词 query 前 80: Cell published studies on p53 mutation in colorectal cancer tumor protein p53 tp...
+     过滤: {'journal_keyword': 'cell'}
+
+──────────────────────────────────────────────────────────────────────
+[Q25] Science articles on alpha-synuclein and Parkinson's disease
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: "Science articles on alpha-synuclein and Parkinson's disease" → "Science articles on alpha-synuclein and Parkinson's disease"
+  [2] 实体识别: {'disease': ["parkinson's disease"]}
+  [3] 同义词扩展: 无
+  [4] 生成 1 个查询版本
+  [5] 向量 query: "Represent this question for searching relevant passages: Science articles on alpha-synuclein and Parkinson's disease"
+  [6] 关键词 query: Science articles on alpha-synuclein and Parkinson's disease
+  [7] 提取过滤: {'journal_keyword': 'science'}
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: Science articles on alp...
+     关键词 query 前 80: Science articles on alpha-synuclein and Parkinson's disease...
+     过滤: {'journal_keyword': 'science'}
+
+──────────────────────────────────────────────────────────────────────
+[Q26] Impact of HbA1c control on cardiovascular outcomes in T2DM patients with hypertension
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: 'Impact of HbA1c control on cardiovascular outcomes in T2DM patients with hypertension' → 'Impact of HbA1c control on cardiovascular outcomes in T2DM patients with hypertension'
+  [2] 实体识别: {'disease': ['hypertension'], 'anatomy': ['cardiovascular']}
+  [3] 同义词扩展: ['type 2 diabetes mellitus', 'non-insulin dependent diabetes', 'type 2 diabetes']
+  [4] 生成 4 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: Impact of HbA1c control on cardiovascular outcomes in T2DM patients with hypertension'
+  [6] 关键词 query: Impact of HbA1c control on cardiovascular outcomes in T2DM patients with hypertension type 2 diabete...
+  [7] 提取过滤: 无
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: Impact of HbA1c control...
+     关键词 query 前 80: Impact of HbA1c control on cardiovascular outcomes in T2DM patients with hyperte...
+
+──────────────────────────────────────────────────────────────────────
+[Q27] Metformin and vitamin B12 deficiency in diabetic patients
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: 'Metformin and vitamin B12 deficiency in diabetic patients' → 'Metformin and vitamin B12 deficiency in diabetic patients'
+  [2] 实体识别: {'drug': ['metformin']}
+  [3] 同义词扩展: 无
+  [4] 生成 1 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: Metformin and vitamin B12 deficiency in diabetic patients'
+  [6] 关键词 query: Metformin and vitamin B12 deficiency in diabetic patients
+  [7] 提取过滤: 无
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: Metformin and vitamin B...
+     关键词 query 前 80: Metformin and vitamin B12 deficiency in diabetic patients...
+
+──────────────────────────────────────────────────────────────────────
+[Q28] ctDNA monitoring for EGFR mutant NSCLC targeted therapy response
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: 'ctDNA monitoring for EGFR mutant NSCLC targeted therapy response' → 'ctDNA monitoring for EGFR mutant NSCLC targeted therapy response'
+  [2] 实体识别: {'gene_protein': ['egfr']}
+  [3] 同义词扩展: ['non-small cell lung cancer', 'non-small cell lung carcinoma', 'epidermal growth factor receptor']
+  [4] 生成 4 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: ctDNA monitoring for EGFR mutant NSCLC targeted therapy response'
+  [6] 关键词 query: ctDNA monitoring for EGFR mutant NSCLC targeted therapy response non-small cell lung cancer non-smal...
+  [7] 提取过滤: 无
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: ctDNA monitoring for EG...
+     关键词 query 前 80: ctDNA monitoring for EGFR mutant NSCLC targeted therapy response non-small cell ...
+
+──────────────────────────────────────────────────────────────────────
+[Q29] Incidence and mortality trends of pancreatic cancer globally
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: 'Incidence and mortality trends of pancreatic cancer globally' → 'Incidence and mortality trends of pancreatic cancer globally'
+  [2] 实体识别: {'disease': ['cancer']}
+  [3] 同义词扩展: 无
+  [4] 生成 1 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: Incidence and mortality trends of pancreatic cancer globally'
+  [6] 关键词 query: Incidence and mortality trends of pancreatic cancer globally
+  [7] 提取过滤: 无
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: Incidence and mortality...
+     关键词 query 前 80: Incidence and mortality trends of pancreatic cancer globally...
+
+──────────────────────────────────────────────────────────────────────
+[Q30] Subgroup analysis of sex differences in statin efficacy for CVD prevention
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: 'Subgroup analysis of sex differences in statin efficacy for CVD prevention' → 'Subgroup analysis of sex differences in statin efficacy for CVD prevention'
+  [2] 实体识别: 未识别到医学实体
+  [3] 同义词扩展: ['hmg-coa reductase inhibitor', 'cardiovascular disease', 'statin drug']
+  [4] 生成 4 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: Subgroup analysis of sex differences in statin efficacy for CVD prevention'
+  [6] 关键词 query: Subgroup analysis of sex differences in statin efficacy for CVD prevention hmg-coa reductase inhibit...
+  [7] 提取过滤: 无
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: Subgroup analysis of se...
+     关键词 query 前 80: Subgroup analysis of sex differences in statin efficacy for CVD prevention hmg-c...
+
+──────────────────────────────────────────────────────────────────────
+[Q31] Hazard ratio and overall survival in immunotherapy trials
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: 'Hazard ratio and overall survival in immunotherapy trials' → 'Hazard ratio and overall survival in immunotherapy trials'
+  [2] 实体识别: 未识别到医学实体
+  [3] 同义词扩展: 无
+  [4] 生成 1 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: Hazard ratio and overall survival in immunotherapy trials'
+  [6] 关键词 query: Hazard ratio and overall survival in immunotherapy trials
+  [7] 提取过滤: 无
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: Hazard ratio and overal...
+     关键词 query 前 80: Hazard ratio and overall survival in immunotherapy trials...
+
+──────────────────────────────────────────────────────────────────────
+[Q32] TMB and PD-1/PD-L1 inhibitor response correlation
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: 'TMB and PD-1/PD-L1 inhibitor response correlation' → 'TMB and PD-1/PD-L1 inhibitor response correlation'
+  [2] 实体识别: 未识别到医学实体
+  [3] 同义词扩展: ['programmed cell death protein 1', 'programmed death-ligand 1', 'cd274', 'pdcd1']
+  [4] 生成 5 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: TMB and PD-1/PD-L1 inhibitor response correlation'
+  [6] 关键词 query: TMB and PD-1/PD-L1 inhibitor response correlation programmed cell death protein 1 programmed death-l...
+  [7] 提取过滤: 无
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: TMB and PD-1/PD-L1 inhi...
+     关键词 query 前 80: TMB and PD-1/PD-L1 inhibitor response correlation programmed cell death protein ...
+
+──────────────────────────────────────────────────────────────────────
+[Q33] Meta-analysis of ACE inhibitors in heart failure with reduced ejection fraction
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: 'Meta-analysis of ACE inhibitors in heart failure with reduced ejection fraction' → 'Meta-analysis of ACE inhibitors in heart failure with reduced ejection fraction'
+  [2] 实体识别: {'disease': ['heart failure'], 'anatomy': ['heart']}
+  [3] 同义词扩展: 无
+  [4] 生成 1 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: Meta-analysis of ACE inhibitors in heart failure with reduced ejection fraction'
+  [6] 关键词 query: Meta-analysis of ACE inhibitors in heart failure with reduced ejection fraction
+  [7] 提取过滤: 无
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: Meta-analysis of ACE in...
+     关键词 query 前 80: Meta-analysis of ACE inhibitors in heart failure with reduced ejection fraction...
+
+──────────────────────────────────────────────────────────────────────
+[Q34] Recent advances in gene therapy for rare diseases
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: 'Recent advances in gene therapy for rare diseases' → 'Recent advances in gene therapy for rare diseases'
+  [2] 实体识别: 未识别到医学实体
+  [3] 同义词扩展: 无
+  [4] 生成 1 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: Recent advances in gene therapy for rare diseases'
+  [6] 关键词 query: Recent advances in gene therapy for rare diseases
+  [7] 提取过滤: {'year': {'$gte': '2021'}}
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: Recent advances in gene...
+     关键词 query 前 80: Recent advances in gene therapy for rare diseases...
+     过滤: {'year': {'$gte': '2021'}}
+
+──────────────────────────────────────────────────────────────────────
+[Q35] Cell reports on novel drug delivery systems
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: 'Cell reports on novel drug delivery systems' → 'Cell reports on novel drug delivery systems'
+  [2] 实体识别: 未识别到医学实体
+  [3] 同义词扩展: 无
+  [4] 生成 1 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: Cell reports on novel drug delivery systems'
+  [6] 关键词 query: Cell reports on novel drug delivery systems
+  [7] 提取过滤: {'journal_keyword': 'cell'}
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: Cell reports on novel d...
+     关键词 query 前 80: Cell reports on novel drug delivery systems...
+     过滤: {'journal_keyword': 'cell'}
+
+──────────────────────────────────────────────────────────────────────
+[Q36] ASA and bleeding risk in cardiovascular patients
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: 'ASA and bleeding risk in cardiovascular patients' → 'ASA and bleeding risk in cardiovascular patients'
+  [2] 实体识别: {'anatomy': ['cardiovascular']}
+  [3] 同义词扩展: ['acetylsalicylic acid', 'aspirin']
+  [4] 生成 3 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: ASA and bleeding risk in cardiovascular patients'
+  [6] 关键词 query: ASA and bleeding risk in cardiovascular patients acetylsalicylic acid aspirin
+  [7] 提取过滤: 无
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: ASA and bleeding risk i...
+     关键词 query 前 80: ASA and bleeding risk in cardiovascular patients acetylsalicylic acid aspirin...
+
+──────────────────────────────────────────────────────────────────────
+[Q37] 高血压患者用 ARB 治疗的效果如何?
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: '高血压患者用 ARB 治疗的效果如何?' → '高血压患者用 ARB 治疗的效果如何?'
+  [2] 实体识别: {'disease_cn': ['高血压']}
+  [3] 同义词扩展: ['血压高', '高血压病', 'hypertension', 'angiotensin receptor blocker']
+  [4] 生成 5 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: 高血压患者用 ARB 治疗的效果如何?'
+  [6] 关键词 query: 高血压患者用 ARB 治疗的效果如何? 血压高 高血压病 hypertension angiotensin receptor blocker
+  [7] 提取过滤: 无
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: 高血压患者用 ARB 治疗的效果如何?...
+     关键词 query 前 80: 高血压患者用 ARB 治疗的效果如何? 血压高 高血压病 hypertension angiotensin receptor blocker...
+
+──────────────────────────────────────────────────────────────────────
+[Q38] Myocardial infarction with ST-segment elevation treatment guidelines
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: 'Myocardial infarction with ST-segment elevation treatment guidelines' → 'Myocardial infarction with ST-segment elevation treatment guidelines'
+  [2] 实体识别: {'disease': ['myocardial infarction']}
+  [3] 同义词扩展: 无
+  [4] 生成 1 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: Myocardial infarction with ST-segment elevation treatment guidelines'
+  [6] 关键词 query: Myocardial infarction with ST-segment elevation treatment guidelines
+  [7] 提取过滤: 无
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: Myocardial infarction w...
+     关键词 query 前 80: Myocardial infarction with ST-segment elevation treatment guidelines...
+
+──────────────────────────────────────────────────────────────────────
+[Q39] Which statins are NOT associated with increased diabetes risk?
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: 'Which statins are NOT associated with increased diabetes risk?' → 'Which statins are NOT associated with increased diabetes risk?'
+  [2] 实体识别: {'disease': ['diabetes']}
+  [3] 同义词扩展: 无
+  [4] 生成 1 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: Which statins are NOT associated with increased diabetes risk?'
+  [6] 关键词 query: Which statins are NOT associated with increased diabetes risk?
+  [7] 提取过滤: 无
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: Which statins are NOT a...
+     关键词 query 前 80: Which statins are NOT associated with increased diabetes risk?...
+
+──────────────────────────────────────────────────────────────────────
+[Q40] 我在查找关于二型糖尿病患者使用恩格列净（empagliflozin）对心血管结局影响的随机对照试验，尤其是近三年内发表在 NEJM 或 Lancet 上的研究
+──────────────────────────────────────────────────────────────────────
+  [1] 清洗: '我在查找关于二型糖尿病患者使用恩格列净（empagliflozin）对心血管结局影响的随机对照试验，尤其是近三年内发表在 NEJM 或 Lancet 上的研究' → '我在查找关于二型糖尿病患者使用恩格列净（empagliflozin）对心血管结局影响的随机对照试验，尤其是近三年内发表在 NEJM 或 Lancet 上的研究'
+  [2] 实体识别: {'drug': ['empagliflozin'], 'disease_cn': ['糖尿病']}
+  [3] 同义词扩展: ['2型糖尿病', '糖尿病 mellitus', '消渴症', 'type 2 diabetes', 'empagliflozin', 'diabetes', '2型糖尿病 mellitus']
+  [4] 生成 8 个查询版本
+  [5] 向量 query: 'Represent this question for searching relevant passages: 我在查找关于二型糖尿病患者使用恩格列净（empagliflozin）对心血管结局影响的随机对照试验，尤其是近三年内发表在 NEJM 或 Lancet 上的研究'
+  [6] 关键词 query: 我在查找关于二型糖尿病患者使用恩格列净（empagliflozin）对心血管结局影响的随机对照试验，尤其是近三年内发表在 NEJM 或 Lancet 上的研究 2型糖尿病 糖尿病 mellitus 消...
+  [7] 提取过滤: {'year': {'$gte': '2021'}, 'journal_keyword': 'nejm'}
+
+  → 摘要:
+     向量 query: Represent this question for searching relevant passages: 我在查找关于二型糖尿病患者使用恩格列净（emp...
+     关键词 query 前 80: 我在查找关于二型糖尿病患者使用恩格列净（empagliflozin）对心血管结局影响的随机对照试验，尤其是近三年内发表在 NEJM 或 Lancet 上的研究 ...
+     过滤: {'year': {'$gte': '2021'}, 'journal_keyword': 'nejm'}
+
+======================================================================
+[OK] Demo completed, results saved: ./output/query_enhancement_demo.json
+======================================================================

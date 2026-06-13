@@ -1,0 +1,76 @@
+{
+  "basic": {
+    "vector_count": 138142,
+    "sample_metadata_keys": [
+      "split_method",
+      "token_count",
+      "total_chunks",
+      "source_title",
+      "chunk_index",
+      "doc_id"
+    ]
+  },
+  "filter_eq_doc_id": {
+    "filter": {
+      "doc_id": "12969509"
+    },
+    "op": "$eq",
+    "results_count": 3,
+    "sample_ids": [
+      "12969509_chunk_045",
+      "12969509_chunk_010",
+      "12969509_chunk_006"
+    ]
+  },
+  "filter_in_doc_ids": {
+    "filter": {
+      "doc_id": {
+        "$in": [
+          "12969509",
+          "15291972"
+        ]
+      }
+    },
+    "op": "$in",
+    "results_count": 5,
+    "doc_ids_in_results": [
+      "12969509"
+    ]
+  },
+  "filter_chunk_index_range": {
+    "filter": {
+      "$and": [
+        {
+          "chunk_index": {
+            "$gte": 0
+          }
+        },
+        {
+          "chunk_index": {
+            "$lte": 5
+          }
+        }
+      ]
+    },
+    "op": "$and",
+    "results_count": 5
+  },
+  "self_similarity": {
+    "tested": 3,
+    "passed": 3
+  },
+  "boundary": {
+    "empty": {
+      "results": 0
+    },
+    "whitespace": {
+      "results": 0
+    },
+    "single_char": {
+      "results": 5
+    },
+    "long_4000": {
+      "results": 5
+    }
+  }
+}

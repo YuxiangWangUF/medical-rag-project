@@ -1,0 +1,116 @@
+{
+  "basic": {
+    "vector_count": 138142,
+    "sample_metadata_keys": [
+      "source_title",
+      "chunk_index",
+      "doc_id",
+      "token_count",
+      "total_chunks",
+      "split_method"
+    ]
+  },
+  "self_similarity": {
+    "tested": 5,
+    "passed": 5,
+    "pass_rate": 100.0,
+    "details": [
+      {
+        "query_chunk_id": "15766379_chunk_018",
+        "top1_id": "15766379_chunk_018",
+        "top1_distance": 0.00994187593460083,
+        "is_self_top1": true
+      },
+      {
+        "query_chunk_id": "15720726_chunk_031",
+        "top1_id": "15720726_chunk_031",
+        "top1_distance": 0.030345559120178223,
+        "is_self_top1": true
+      },
+      {
+        "query_chunk_id": "15296518_chunk_055",
+        "top1_id": "15296518_chunk_055",
+        "top1_distance": 0.006937265396118164,
+        "is_self_top1": true
+      },
+      {
+        "query_chunk_id": "15511292_chunk_051",
+        "top1_id": "15511292_chunk_051",
+        "top1_distance": 0.008573770523071289,
+        "is_self_top1": true
+      },
+      {
+        "query_chunk_id": "15548331_chunk_080",
+        "top1_id": "15548331_chunk_080",
+        "top1_distance": 0.017128348350524902,
+        "is_self_top1": true
+      }
+    ]
+  },
+  "boundary_tests": {
+    "empty_query": {
+      "handled": true,
+      "results_returned": 0
+    },
+    "whitespace_query": {
+      "handled": true,
+      "results_returned": 0
+    },
+    "long_query": {
+      "handled": true,
+      "query_length_chars": 4000,
+      "results_returned": 5
+    },
+    "single_char_query": {
+      "handled": true,
+      "results_returned": 5
+    }
+  },
+  "metadata_filter": {
+    "filter_used": {
+      "source_title": {
+        "$contains": "ARF"
+      }
+    },
+    "results_count": 0,
+    "sample_ids": []
+  },
+  "test_queries": [
+    {
+      "query": "What is ARNO?",
+      "top5_doc_ids": [
+        "12969509",
+        "12969509",
+        "12969509",
+        "12969509",
+        "12969509"
+      ],
+      "expected": "12969509",
+      "hit": true
+    },
+    {
+      "query": "ARF protein phospholipase D",
+      "top5_doc_ids": [
+        "12969509",
+        "12969509",
+        "12969509",
+        "12969509",
+        "12969509"
+      ],
+      "expected": "12969509",
+      "hit": true
+    },
+    {
+      "query": "insulin signaling pathway",
+      "top5_doc_ids": [
+        "15291972",
+        "15291972",
+        "15291972",
+        "PMC406405",
+        "15291972"
+      ],
+      "expected": null,
+      "hit": null
+    }
+  ]
+}
