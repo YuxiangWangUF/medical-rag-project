@@ -65,3 +65,11 @@ models/
 *.tmp
 *.bak
 *.log.gz
+
+# ===== 中间产物(可能很大,只留报告)=====
+output/*.jsonl
+output/*.parquet
+output/*.csv
+output/*.tsv
+# 但保留这些小报告
+!output/stage6_eval_*.json

@@ -2,7 +2,7 @@
 
 > 基于 PubMed 医学文献的 RAG(检索增强生成)系统,本地 Ollama 驱动,零云端依赖。
 
-## 🎯 项目目标
+## 项目目标
 
 构建一个**本地可跑**的医疗文献问答系统:
 - 从 PubMed 批量下载 XML
@@ -10,23 +10,23 @@
 - 多路检索 + 多准则重排
 - LLM 生成带引文的答案
 
-## 📊 整体进度
+## 整体进度
 
 | 阶段 | 内容 | 状态 | 测试 |
 |---|---|---|---|
-| 一 | 数据下载(PubMed XML) | ✅ | - |
-| 二 | 数据分析(`data_analysis.py`) | ✅ | 20 |
-| 三 | 文档切分(`chunk_processor.py`) | ✅ | 18 |
-| 四 | 向量索引(`vector_indexer.py`) | ✅ | 16 |
-| 五 | 查询增强(`query_enhancer.py`) | ✅ | 41 |
-| 六·上 | 多路检索 + 重排(`multi_path_retriever.py`) | ✅ | 23 |
-| 六·下 | 检索流水线(`stage6_retrieval_pipeline.py`) | ✅ | 34 |
-| 七 | LLM 答案生成(集成在 stage6) | ✅ | 36 |
-| **BM25 修复** | **tokenize + 医学自定义词典** | **✅** | **12** |
-| **同义词 + vector_query 优化** | **BM25 拿 synonyms / 向量拿 BGE instruction** | **✅** | **+3** |
-| **合计** | | **✅ 8 阶段** | **218 个测试,66s 全过** |
+| 一 | 数据下载(PubMed XML) | 完成 | - |
+| 二 | 数据分析(`data_analysis.py`) | 完成 | 20 |
+| 三 | 文档切分(`chunk_processor.py`) | 完成 | 18 |
+| 四 | 向量索引(`vector_indexer.py`) | 完成 | 16 |
+| 五 | 查询增强(`query_enhancer.py`) | 完成 | 41 |
+| 六·上 | 多路检索 + 重排(`multi_path_retriever.py`) | 完成 | 23 |
+| 六·下 | 检索流水线(`stage6_retrieval_pipeline.py`) | 完成 | 34 |
+| 七 | LLM 答案生成(集成在 stage6) | 完成 | 36 |
+| **BM25 修复** | **tokenize + 医学自定义词典** | **完成** | **12** |
+| **同义词 + vector_query 优化** | **BM25 拿 synonyms / 向量拿 BGE instruction** | **完成** | **+3** |
+| **合计** | | **完成 8 阶段** | **218 个测试,66s 全过** |
 
-## 🏗️ 系统架构
+## 系统架构
 
 ```
 ┌─────────────┐
@@ -65,10 +65,10 @@
 │     - 拒答保护 / 医学免责              │
 └──────────────────────────────────────┘
        ↓
-   📖 答案 + 📚 参考来源 (PubMed 链接)
+    答案 + 参考来源 (PubMed 链接)
 ```
 
-## 🛠️ 技术栈
+## 技术栈
 
 | 组件 | 选型 | 原因 |
 |---|---|---|
@@ -80,7 +80,7 @@
 | 框架 | **LangChain 1.x** | 流水线编排 |
 | 测试 | **pytest** | 203 个测试 |
 
-## 🚀 跑法
+## 跑法
 
 ### 准备
 
@@ -122,7 +122,7 @@ D:\Anaconda\envs\medical_rag\python.exe -m pytest tests/ -v
 # 203 passed, ~72s
 ```
 
-## 📈 评估结果(50 query 批量)
+## 评估结果(50 query 批量)
 
 | 指标 | 数值 |
 |---|---|
@@ -137,7 +137,7 @@ D:\Anaconda\envs\medical_rag\python.exe -m pytest tests/ -v
 
 详细 JSON 报告:`output/stage6_eval_50query.json`
 
-## 📁 项目结构
+## 项目结构
 
 ```
 medical_rag_project/
@@ -152,7 +152,7 @@ medical_rag_project/
 │   ├── test_vector_indexer.py
 │   ├── test_query_enhancer.py
 │   ├── test_multi_path_retriever.py     # 融合层 20 个
-│   ├── test_retrieval_pipeline.py       # ⚠️ deprecated
+│   ├── test_retrieval_pipeline.py       # **注意:**  deprecated
 │   ├── test_rag_medical.py
 │   └── test_stage7_answer_generation.py # LLM 层 36 个
 ├── data_analysis.py              # 阶段二
@@ -161,13 +161,13 @@ medical_rag_project/
 ├── query_enhancer.py             # 阶段五
 ├── multi_path_retriever.py       # 阶段六·上(融合层)
 ├── stage6_retrieval_pipeline.py  # 阶段六·下(端到端,主入口)
-├── retrieval_pipeline.py         # ⚠️ DEPRECATED,保留只为兼容
+├── retrieval_pipeline.py         # **注意:**  DEPRECATED,保留只为兼容
 ├── rag_medical.py                # 工具集
 ├── eval_50query.py               # 50 query 评估脚本
 └── README.md                     # 本文件
 ```
 
-## 🔧 关键设计决策
+## 关键设计决策
 
 ### 1. 为什么用 bge-m3 而不是 bge-small-zh
 
@@ -192,7 +192,7 @@ medical_rag_project/
 - 不知道就说"未明确提及"
 - 医学免责("建议咨询执业医师")
 
-## 🐛 已知 P0 问题(已修)
+## 已知 P0 问题(已修)
 
 1. **`multi_path_retriever.py` 融合 key 用 `id(doc)`** → 改用 `pmid` 优先,跨路径同源 doc 合并
 2. **`weighted_fusion` 单路命中被稀释** → 改为只累加出现过的路径
@@ -201,7 +201,7 @@ medical_rag_project/
 5. **`max_rec` 错调 `_get_authority_score`** → 改回 `_get_recency_score`
 6. **BM25 中文 query 永远 0 命中** → 重写 `tokenize()`(中英分离)+ 注入 50+ 医学术语到 jieba 自定义词典
 
-## 🩹 BM25 修复详解(2026-06-11)
+## BM25 修复详解(2026-06-11)
 
 **根因**(三层):
 1. jieba 对中英混合文本**把中文按字切**("二甲双胍" → ["二甲", "胍"])
@@ -217,20 +217,20 @@ medical_rag_project/
 
 | 指标 | 修复前 | 修复后 | 变化 |
 |---|---|---|---|
-| BM25 召回率 | 0% | 100% | ✨ |
+| BM25 召回率 | 0% | 100% | |
 | 平均检索耗时 | 211.7ms | 164.5ms | **-22%** |
 | 总耗时 | 10.6s | 8.2s | -23% |
 | Top-1 多样性 | 74.5% | 76.6% | +2.1% |
 
 **意义**:修复前 BM25 几乎不起作用,所有效果都靠向量检索;修复后 BM25 真的参与召回,RRF 融合才有意义,多路检索架构**名副其实**。
 
-## 📊 LLM 答案示例
+## LLM 答案示例
 
 ### Q: "What is ARNO protein?"
 
 > 根据提供的医学文献,ARNO是一种包含三个结构域的蛋白质:N端的GAP结构域(GTPase-activating domain),中间的Sec7结构域(与酵母蛋白Sec7具有同源性),以及C端的pleckstrin homology结构域(PH结构域)[1]。文献指出,ARNO的催化活性(针对鸟苷酸交换的活性)位于Sec7结构域,并通过PH结构域与磷脂酰肌醇(3,4,5)-三磷酸的相互作用进行调控[1]。
 
-📚 参考:
+ 参考:
 - PMID: 12969509 (2003) - https://pubmed.ncbi.nlm.nih.gov/12969509/
 
 ### Q: "二甲双胍对心血管疾病的影响"
@@ -239,7 +239,7 @@ medical_rag_project/
 
 *(LLM 正确拒答,符合 prompt 规则 — 召回的 5 篇不相关时,直接说"不知道")*
 
-## 🧪 测试覆盖明细
+## 测试覆盖明细
 
 | 测试文件 | 数量 | 覆盖 |
 |---|---|---|
@@ -249,12 +249,12 @@ medical_rag_project/
 | test_query_enhancer.py | 41 | 清洗、实体、同义词、过滤 |
 | test_multi_path_retriever.py | 23 | 融合 key / RRF / weighted / simple / vector_query |
 | test_bm25_tokenize.py | 12 | BM25 命中(tokenize / 中英 / 医学词典) |
-| test_retrieval_pipeline.py | 34 | ⚠️ deprecated 版的组件 |
+| test_retrieval_pipeline.py | 34 | **注意:**  deprecated 版的组件 |
 | test_rag_medical.py | 16 | BGEReranker / HybridRetriever |
 | test_stage7_answer_generation.py | 36 | LLM 集成层(端到端 mock) |
 | **合计** | **218** | **~66s 全过** |
 
-## 📝 后续可做
+## 后续可做
 
 - [ ] 多模态(PubMed 论文的图表)
 - [ ] 反馈学习(用户标注 → 排序优化)
