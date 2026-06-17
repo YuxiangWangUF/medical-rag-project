@@ -331,12 +331,14 @@ class RetrievalPipeline:
         return result
 
     def _generate_answer(self, question: str, docs: List[Document]) -> str:
-        """基于检索结果生成 LLM 答案"""
+        """基于检索结果生成 LLM 答案。
+
+        异常向上抛 — 由 query() 的 try/except 捕获并填到 result.error。
+        之前这里 try/except 返回错误字符串,导致 result.error 永远为空,
+        evaluate() 把 LLM 失败也算成"成功"了 (P2-5 修复)。
+        """
         prompt = self._build_prompt(question, docs)
-        try:
-            return self.llm.invoke(prompt)
-        except Exception as e:
-            return f"[LLM 调用失败: {e}]"
+        return self.llm.invoke(prompt)
 
     def _build_prompt(self, question: str, docs: List[Document]) -> str:
         """构建医疗专用 prompt"""
@@ -467,15 +469,20 @@ def compare_fusion_strategies(pipeline: RetrievalPipeline,
     对比不同融合策略的检索效果
 
     对每个查询分别跑 RRF / 加权 / 简单三种策略,
-    统计召回率、平均分数等指标
+    统计召回率、平均分数等指标。
+
+    优化 (P2-4):只切换融合策略,不重建 BM25 索引和重排序器。
+    之前每个策略都会重建检索器,导致 evaluate 慢 6-10 秒。
     """
     strategies = ["rrf", "weighted", "simple"]
     results_map = {}
 
+    # 记住原策略,跑完恢复(避免污染 pipeline 状态)
+    original_strategy = pipeline.retriever.fusion_strategy
+
     for strategy in strategies:
-        # 重建检索器(更换融合策略)
-        pipeline.config["fusion_strategy"] = strategy
-        pipeline._build_retriever()
+        # 直接切 fusion_strategy(不重建索引,见 MultiPathRetriever.fusion_strategy setter)
+        pipeline.retriever.fusion_strategy = strategy
 
         r_list = pipeline.batch_query(
             test_queries,
@@ -489,6 +496,9 @@ def compare_fusion_strategies(pipeline: RetrievalPipeline,
         recall_list = [len(r.retrieved_docs) for r in r_list]
         print(f"  [{strategy}] 平均召回: {sum(recall_list)/len(recall_list):.1f} 篇, "
               f"成功: {sum(1 for r in r_list if not r.error)}/{len(r_list)}")
+
+    # 恢复原策略
+    pipeline.retriever.fusion_strategy = original_strategy
 
     # 对比报告
     report = {}

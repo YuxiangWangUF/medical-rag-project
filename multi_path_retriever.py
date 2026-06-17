@@ -12,18 +12,14 @@
 #
 # 依赖: rank_bm25, sentence-transformers (CrossEncoder)
 
-import os
 import math
 import jieba
-import torch
 from typing import List, Tuple, Optional, Dict, Any
 from dataclasses import dataclass, field
 
 from langchain_core.documents import Document
 from langchain_core.retrievers import BaseRetriever
 from pydantic import PrivateAttr
-
-from transformers import AutoTokenizer, AutoModelForSequenceClassification
 from sentence_transformers import CrossEncoder
 
 from langchain_chroma import Chroma
@@ -114,13 +110,6 @@ def tokenize(text: str) -> List[str]:
             tokens.append(w)
 
     return tokens
-
-
-def tokenize_chinese(text: str) -> List[str]:
-    """
-    兼容旧 API(实际已统一到 tokenize)
-    """
-    return tokenize(text)
 
 
 def _doc_key(item) -> str:
@@ -411,37 +400,56 @@ class MultiCriteriaReranker:
     }
 
     # 期刊权威性权重 (越高越权威)
-    JOURNAL_WEIGHTS = {
-        # 顶刊
-        "nature":          5.0,
-        "cell":            5.0,
-        "science":         5.0,
-        "lancet":          5.0,
-        "nejm":            5.0,    # New England Journal of Medicine
-        "n engl j med":    5.0,
-        "new england":     5.0,
-        "jama":            5.0,    # Journal of the American Medical Association
-        "bmj":             4.5,
-        # 主医刊
-        "circulation":     4.5,
-        "j clin oncol":    4.5,   # Journal of Clinical Oncology
-        "j natl cancer inst": 4.5,
-        "ann oncol":       4.0,   # Annals of Oncology
-        "plos med":        3.5,
-        "european heart":  4.0,
-        # 通用
-        "default":         1.0,
-    }
+    # 匹配规则:每条 entry 含 (match_strings, weight)
+    #   - 顺序敏感:从上到下匹配,**先列更具体的**(否则 "cell" 会吃掉 "Cell Reports")
+    #   - 短缩写(<=5 字符)用单词边界匹配,长名(>=6)用子串匹配
+    JOURNAL_WEIGHTS = [
+        # === 顶刊 — 长全名/缩写,先列 ===
+        (["new england journal of medicine", "n engl j med", "nejm"], 5.0),
+        (["journal of the american medical association", "jama"], 5.0),
 
-    # 时效性参考年份(越近越高)
-    REFERENCE_YEAR = 2026
+        # === Nature 系 — 子刊明确降权 ===
+        (["nature communications"], 4.0),  # IF ≈ 17,不是 Nature 主刊
+        (["nature medicine", "nat med"], 5.0),  # 顶刊
+        (["nature genetics", "nature immunology", "nature cell biology",
+          "nature biotechnology", "nature methods"], 4.5),
+        (["nature"], 5.0),  # Nature 主刊
+
+        # === Lancet 系 ===
+        (["lancet"], 5.0),  # 主刊
+
+        # === Science 系 ===
+        (["science"], 5.0),  # 主刊(注意:有 "Science Translational Medicine" 等)
+
+        # === Cell 系 — 关键:Cell Reports 不是 Cell ===
+        (["cell reports", "cell reports medicine"], 4.0),  # IF ≈ 7-10,降权
+        (["cell"], 5.0),  # Cell 主刊
+
+        # === 主医刊 ===
+        (["british medical journal", "bmj"], 4.5),
+        (["circulation"], 4.5),
+        (["j clin oncol", "jco"], 4.5),  # Journal of Clinical Oncology
+        (["j natl cancer inst", "jnci"], 4.5),
+        (["annals of oncology", "ann oncol"], 4.0),
+        (["european heart journal", "european heart"], 4.0),
+        (["plos medicine", "plos med"], 3.5),
+
+        # === 兜底 ===
+        (["default"], 1.0),
+    ]
+
+    # 时效性参考年份(越近越高) — 用动态年份,避免跨年失效
+    @staticmethod
+    def _reference_year() -> int:
+        from datetime import datetime
+        return datetime.now().year
 
     def __init__(self,
                  model_name: str = RERANK_MODEL,
                  criteria_weights: Optional[Dict[str, float]] = None,
-                 current_year: int = None):
+                 current_year: Optional[int] = None):
         self.criteria_weights = criteria_weights or self.DEFAULT_WEIGHTS.copy()
-        self.current_year = current_year or self.REFERENCE_YEAR
+        self.current_year = current_year if current_year is not None else self._reference_year()
         self.reranker = None
         self._fallback_mode = False
 
@@ -459,15 +467,38 @@ class MultiCriteriaReranker:
         print(f"多准则权重: {self.criteria_weights}")
 
     def _get_authority_score(self, metadata: Dict) -> float:
-        """根据期刊名返回权威性分数"""
+        """根据期刊名返回权威性分数
+
+        匹配策略:每个 JOURNAL_WEIGHTS 条目给一组字符串,按"长名优先"排序匹配。
+        短缩写(如 "nejm"、"jama")采用子串包含(因为它们就是缩写,本身就是字符串);
+        长名(如 "nature"、"cell")按"独立词"匹配,防止子刊误中(见 P1-1)。
+        """
         journal = metadata.get("journal", "").lower()
         if not journal:
-            return self.JOURNAL_WEIGHTS["default"]
+            return self._journal_default_weight()
 
-        for kw, weight in self.JOURNAL_WEIGHTS.items():
-            if kw != "default" and kw in journal:
+        for match_strings, weight in self.JOURNAL_WEIGHTS:
+            if "default" in match_strings:
+                continue  # 最后兜底
+            for kw in match_strings:
+                # 短缩写(<=5 字符)要求独立词边界(避免 "nejm" 误中 "jnejmxxx")
+                # 长名(>=6 字符)允许子串包含(因为它通常就是完整名)
+                if len(kw) <= 5:
+                    import re as _re
+                    if not _re.search(rf"\b{_re.escape(kw)}\b", journal):
+                        continue
+                else:
+                    if kw not in journal:
+                        continue
                 return weight
-        return self.JOURNAL_WEIGHTS["default"]
+        return self._journal_default_weight()
+
+    @classmethod
+    def _journal_default_weight(cls) -> float:
+        for match_strings, weight in cls.JOURNAL_WEIGHTS:
+            if "default" in match_strings:
+                return weight
+        return 1.0
 
     def _get_recency_score(self, metadata: Dict) -> float:
         """
@@ -544,9 +575,10 @@ class MultiCriteriaReranker:
             rec = self._get_recency_score(metadata)
             auth = self._get_authority_score(metadata)
 
-            # 归一化
-            norm_rel = rel / max_rel if max_rel > 0 else 0.0
-            norm_rec = rec  # rec 已在 [0,1] 范围内
+            # 归一化 — 三维度统一用"候选池内相对归一化"(P2-6 修复)
+            # 之前 recency 用了绝对值(不归一化),导致候选都新时 recency 几乎没区分度。
+            norm_rel  = rel  / max_rel  if max_rel  > 0 else 0.0
+            norm_rec  = rec  / max_rec  if max_rec  > 0 else 0.0
             norm_auth = auth / max_auth if max_auth > 0 else 0.0
 
             # 加权求和
@@ -582,7 +614,7 @@ class MultiPathRetriever:
 
     检索流程:
       1. BM25 检索 (中文分词,jieba)
-      2. ChromaDB 向量检索 (bge-small-zh-v1.5)
+      2. ChromaDB 向量检索 (bge-m3)
       3. 融合策略 (RRF / 加权 / 简单)
       4. 多准则重排序 (相关性 + 时效性 + 权威性)
       5. Article 级去重
@@ -598,11 +630,8 @@ class MultiPathRetriever:
         criteria_weights: 多准则权重, 如 {"relevance": 0.6, "recency": 0.25, "authority": 0.15}
     """
 
-    _vectorstore: object = PrivateAttr()
-    _bm25: object = PrivateAttr()
-    _reranker: object = PrivateAttr()
-    _chunks: List[Document] = PrivateAttr()
-    _config: Dict = PrivateAttr()
+    # 普通类属性(下划线开头是 Python "private" 约定,不是 Pydantic 的 PrivateAttr)
+    # 之前用 PrivateAttr 是死代码 — 类没继承 BaseModel,这些注解不生效。
 
     def __init__(
         self,
@@ -615,7 +644,6 @@ class MultiPathRetriever:
         reranker_top_k: int = 5,
         criteria_weights: Optional[Dict[str, float]] = None,
     ):
-        super().__init__()
         self._vectorstore = vectorstore
         self._chunks = chunks
         self._config = {
@@ -635,6 +663,17 @@ class MultiPathRetriever:
         self._reranker = MultiCriteriaReranker(
             criteria_weights=criteria_weights,
         )
+
+    @property
+    def fusion_strategy(self) -> str:
+        return self._config["fusion_strategy"]
+
+    @fusion_strategy.setter
+    def fusion_strategy(self, value: str) -> None:
+        """运行时切换融合策略,无需重建 BM25 索引和重排序器。"""
+        if value not in ("rrf", "weighted", "simple"):
+            raise ValueError(f"Unknown fusion_strategy: {value}")
+        self._config["fusion_strategy"] = value
 
     def retrieve(self,
                  query: str,
@@ -715,9 +754,15 @@ class MultiPathRetriever:
                         reranked: List,
                         bm25_raw: List,
                         vec_raw: List):
-        """打印检索分析信息"""
-        bm25_set = {id(d) for d, _ in bm25_raw}
-        vec_set = {id(d) for d, _ in vec_raw}
+        """打印检索分析信息。
+
+        用 _doc_key (pmid/source 优先) 做集合,而不是 id(doc):
+        rrf_fusion/weighted_fusion 在合并跨路径的同 pmid 文档时,
+        新建的 Document 对象 id 会变;但 pmid 不变 — 用 _doc_key 才反映"逻辑同源"
+        (P3-9 修复)。
+        """
+        bm25_set = {_doc_key(d) for d, _ in bm25_raw}
+        vec_set = {_doc_key(d) for d, _ in vec_raw}
 
         # 共同召回的文档数
         overlap = len(bm25_set & vec_set)
@@ -744,7 +789,17 @@ class MultiPathRetriever:
                 print(f"      [{i}] [{src}] {year} {journal[:20]}: {preview}...")
 
     def set_criteria_weights(self, weights: Dict[str, float]):
-        """运行时更新多准则权重"""
+        """运行时更新多准则权重(P2-7:校验 key 集合,防止 KeyError 跑跑才炸)"""
+        required = {"relevance", "recency", "authority"}
+        if not isinstance(weights, dict):
+            raise TypeError(f"weights 必须是 dict,收到 {type(weights).__name__}")
+        missing = required - set(weights.keys())
+        extra = set(weights.keys()) - required
+        if missing or extra:
+            raise ValueError(
+                f"weights 必须是 {{relevance, recency, authority}} 三个 key,"
+                f"缺 {missing or '无'},多 {extra or '无'}"
+            )
         self._reranker.criteria_weights = weights
         print(f"权重已更新: {weights}")
 
@@ -754,6 +809,9 @@ class MultiPathLangChainRetriever(BaseRetriever):
     """
     LangChain BaseRetriever 接口适配器
     让 MultiPathRetriever 可以直接接入 RetrievalQA 等 langchain 组件
+
+    注意:这个类真的继承自 Pydantic 的 BaseRetriever,所以 PrivateAttr() 是对的。
+    (MultiPathRetriever 是不继承 BaseModel 的普通类,那 5 个 PrivateAttr 注解是死代码 — 见 P1-3。)
     """
 
     _mp_retriever: object = PrivateAttr()

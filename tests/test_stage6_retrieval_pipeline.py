@@ -1,10 +1,13 @@
 """
-阶段七测试套件:stage6_retrieval_pipeline.py 的 LLM 生成层
-(重点覆盖 prompt 构造、答案结构、结果序列化、批量流程 — 不直接调真 LLM)
+阶段六测试套件:stage6_retrieval_pipeline.py 的端到端流水线
+(重点覆盖 RetrievalResult、prompt 构造、LLM 调用、批量流程 — 不直接调真 LLM)
+
+文件命名:虽然 test 阶段归在"答案生成"概念下,但所有功能都是 stage6_retrieval_pipeline.py
+的,所以文件名前缀是 stage6 — 这样跟代码一一对应。
 
 跑法:
     $env:HF_ENDPOINT="https://hf-mirror.com"
-    D:\Anaconda\envs\medical_rag\python.exe -m pytest tests/test_stage7_answer_generation.py -v
+    D:\Anaconda\envs\medical_rag\python.exe -m pytest tests/test_stage6_retrieval_pipeline.py -v
 """
 
 import sys
@@ -267,11 +270,15 @@ class TestGenerateAnswer:
         assert "[1][2]" in result
 
     def test_17_generate_answer_handles_exception(self, mock_pipeline, sample_docs):
-        """LLM 异常时返回错误字符串(不抛出)"""
+        """LLM 异常时向上抛出(由 query() 捕获并填到 result.error)
+
+        旧行为:return 错误字符串(P2-5 修复前的行为,会导致 evaluate 误算成功)
+        新行为:让异常向上抛,被 query() 的 try/except 接住
+        """
         mock_pipeline.llm.invoke.side_effect = Exception("Ollama connection refused")
-        result = mock_pipeline._generate_answer("q", sample_docs)
-        assert "LLM 调用失败" in result
-        assert "Ollama" in result
+        with pytest.raises(Exception) as exc_info:
+            mock_pipeline._generate_answer("q", sample_docs)
+        assert "Ollama" in str(exc_info.value)
 
     def test_18_generate_answer_passes_prompt(self, mock_pipeline, sample_docs):
         """传给 LLM 的是 prompt 字符串"""
@@ -410,6 +417,22 @@ class TestQueryMethodMocked:
         assert result.error is not None
         assert "boom" in result.error
         assert result.retrieved_docs == []
+
+    def test_29b_query_handles_llm_exception(self, pipeline_all_mocked):
+        """**P2-5 验证**:LLM 失败时,result.error 被设(而不是被当成成功)"""
+        # 检索正常,LLM 失败
+        from langchain_core.documents import Document
+        pipeline_all_mocked.retriever.retrieve.return_value = [
+            Document(page_content="doc", metadata={"pmid": "1"})
+        ]
+        pipeline_all_mocked.llm.invoke.side_effect = RuntimeError("Ollama down")
+        result = pipeline_all_mocked.query("test", verbose=False)
+        assert result.error is not None
+        assert "Ollama" in result.error
+        # 关键是:retrieved_docs 已经被填充(不是空),证明异常来自 LLM
+        assert len(result.retrieved_docs) == 1
+        # evaluate 不会把这次算成"成功"
+        assert result.answer == ""
 
     def test_30_query_no_docs_message(self, pipeline_all_mocked):
         """召回为空时给友好提示"""
