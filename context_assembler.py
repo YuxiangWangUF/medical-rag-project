@@ -221,22 +221,29 @@ class ContextAssembler:
 
     @staticmethod
     def _truncate_at_sentence(text: str, target_chars: int) -> str:
-        """把文本截到 target_chars 长度,优先在最后 50 字符内找句号截断。
+        """把文本截到 target_chars 长度,优先在"后 10%"窗口内找句号截断。
 
-        之前有过一个 tail_start + slice_ 的算错的实现(注释里说"算错了,简化如下"),
-        简化后只保留 50 字符回看窗口,代码更直白。
+        "后 10%" 指 target_chars 的后 10% 字符窗口;在这个窗口里找句末标点,
+        找到则在标点处截断(避免把句子腰斩),找不到则硬截到 target_chars。
+
+        例子:
+          - target_chars=100, 窗口 = 100 // 10 = 10 字符
+          - 候选区域 = text[90:100]
+          - 在候选区域里 rfind 标点 → 找到则截到该标点之后;否则硬截 text[:100]
+          - target_chars=20, 窗口 = max(1, 20 // 10) = 2 字符(防 0 窗口)
         """
         if len(text) <= target_chars:
             return text
 
-        # 在最后 50 字符里找句末标点
-        candidate_region = text[max(0, target_chars - 50):target_chars]
+        # 后 10% 窗口(至少 1 字符,防止 target_chars < 10 时窗口为 0)
+        window = max(1, target_chars // 10)
+        candidate_region = text[target_chars - window:target_chars]
+
         # 标点按"优先级"排序(更长的优先,避免 "." 匹到 "。" 之前的位置)
-        # 修复:之前 "!\\n" 出现两次,实属笔误
         for punct in ["。", "？", "！", ";\n", "!\n", "?\n", ".\n", ". ", "! ", "? "]:
             idx = candidate_region.rfind(punct)
             if idx >= 0:
-                return text[: max(0, target_chars - 50) + idx + len(punct)]
+                return text[: target_chars - window + idx + len(punct)]
         # 没找到合适句号,硬截
         return text[:target_chars].rstrip()
 
