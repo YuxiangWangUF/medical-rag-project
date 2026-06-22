@@ -66,6 +66,24 @@ models/
 *.bak
 *.log.gz
 
+# ===== Stage 8 e2e 日志(每次跑会刷新)=====
+stage8_e2e_log.txt
+stage8_metrics.jsonl
+
+# ===== LLM 缓存文件 =====
+.llm_cache/
+*.cache.json
+
+# ===== 覆盖率报告 =====
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# ===== OS 临时文件 =====
+*.~*
+*.lock
+
 # ===== 中间产物(可能很大,只留报告)=====
 output/*.jsonl
 output/*.parquet

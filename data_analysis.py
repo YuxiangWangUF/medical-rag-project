@@ -35,9 +35,21 @@ print(f"模型 token 上限: {TOKENIZER_LIMIT}")
 print(f"样本数: {MAX_FILES if MAX_FILES else '全量'}")
 print("=" * 70)
 
-# ---- 加载 bge tokenizer ----
-print(f"\n加载 tokenizer ({EMBEDDING_MODEL})...")
-_TOKENIZER = AutoTokenizer.from_pretrained(EMBEDDING_MODEL)
+# ---- bge tokenizer 延迟加载 ----
+# 用 lazy 加载,避免模块 import 时触发网络请求(内网环境会卡)
+# 第一次调用 token_length_analysis() 时才真正加载
+_TOKENIZER = None
+
+def _get_tokenizer():
+    global _TOKENIZER
+    if _TOKENIZER is None:
+        print(f"\n[首次调用] 加载 tokenizer ({EMBEDDING_MODEL})...")
+        try:
+            _TOKENIZER = AutoTokenizer.from_pretrained(EMBEDDING_MODEL)
+        except Exception as e:
+            print(f"[警告] tokenizer 加载失败({e}),后续 token 分析会回退到字符估算")
+            _TOKENIZER = False  # 标记为失败,避免反复尝试
+    return _TOKENIZER if _TOKENIZER else None
 
 
 # ==================== 1. 数据加载 ====================
@@ -278,12 +290,17 @@ def token_length_analysis(data: list) -> np.ndarray:
     print(f"模型 max_seq_length: {TOKENIZER_LIMIT}")
 
     text_lengths = []
+    tokenizer = _get_tokenizer()  # lazy load,失败时回退字符估算
     for d in data:
         # 用 title + abstract + body 前 2000 字(模拟实际 RAG 处理)
         text = d.get("title", "") + " " + d.get("abstract", "")
         if d.get("body_text"):
             text += " " + d["body_text"][:2000]
-        tokens = _TOKENIZER.encode(text, add_special_tokens=False)
+        if tokenizer:
+            tokens = tokenizer.encode(text, add_special_tokens=False)
+        else:
+            # 回退:1 token ≈ 1.5 字符
+            tokens = list(range(0, int(len(text) / 1.5)))
         text_lengths.append(len(tokens))
     text_lengths = np.array(text_lengths)
 
