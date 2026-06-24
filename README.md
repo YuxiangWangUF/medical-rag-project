@@ -14,7 +14,7 @@
 - 切分、向量化、入库
 - 多路检索 + 多准则重排
 - LLM 生成带引文的答案
-- 全流程可观测、可测试、可 CI
+- 全流程可观测、可测试、可复现
 
 ## 整体进度
 
@@ -32,7 +32,7 @@
 | **同义词 + vector_query 优化** | **BM25 拿 synonyms / 向量拿 BGE instruction** | **完成** | **+3** |
 | 八·1 | Context Assembler + Prompt Templates | **完成** | **48** |
 | 八·2 | LLM Generator + Medical Pipeline | **完成** | **62** |
-| 八·3 | **并发限流 + LRU 缓存 + 流式 + metrics jsonl + TypedDict + CI** | **完成** | **+20** |
+| 八·3 | **并发限流 + LRU 缓存 + 流式 + metrics jsonl + TypedDict** | **完成** | **+20** |
 | **合计** | | **完成 8 阶段** | **331 个测试,~30s 全过** |
 
 ## 系统架构
@@ -97,7 +97,7 @@
 | LLM | **qwen3:8b** (Ollama) | 本地可跑、中文强 |
 | 框架 | **LangChain 1.x** | 流水线编排 |
 | 测试 | **pytest** + fixtures + conftest | 331 个测试 |
-| CI | **GitHub Actions**(ubuntu + windows × py3.10/3.12) | 矩阵测试 |
+
 | 类型 | **TypedDict** | 零开销的 dict 类型契约 |
 
 ## 跑法
@@ -126,7 +126,7 @@ $env:PYTHONIOENCODING="utf-8"  # Windows 必须
 python stage6_retrieval_pipeline.py
 # 交互模式:输入问题,回车;输入 batch 跑评估;输入 exit 退出
 
-# 无 LLM 模式(给无 Ollama 环境 / CI 用)— mock LLM 验证流水线结构
+# 无 LLM 模式(给无 Ollama 环境用)— mock LLM 验证流水线结构
 python stage8_e2e_demo.py --no-llm --query "测试问题"
 
 # 只跑一个 query,持久化 metrics
@@ -227,7 +227,7 @@ medical_rag_project/
 ├── pytest.ini                    # pytest 配置(默认 env vars)
 ├── requirements.txt
 ├── README.md                     # 本文件
-└── .github/workflows/tests.yml   # CI 矩阵(ubuntu/windows × py3.10/3.12)
+
 ```
 
 ## 关键设计决策
@@ -263,8 +263,7 @@ medical_rag_project/
 - **流式生成**:长答案支持 token-by-token 输出,前端可做打字机效果
 - **metrics jsonl 持久化**:每次 run 追加一条记录到 jsonl,便于事后分析
 - **TypedDict 类型契约**:`CacheStats` / `PipelineMetricsRecord` 等
-- **`--no-llm` CLI 模式**:给无 Ollama 环境 / CI 跑流水线结构验证
-- **GitHub Actions CI 矩阵**:ubuntu + windows × py3.10 + py3.12
+- **`--no-llm` CLI 模式**:给无 Ollama 环境跑流水线结构验证
 
 ## 已知 P0 问题(已修)
 
@@ -339,19 +338,6 @@ medical_rag_project/
 | test_conftest.py | 10 | 八·3 fixtures 自身测试 |
 | test_types_typed.py | 8 | 八·3 TypedDict 定义 + 使用 |
 | **合计** | **331** | **~30s 全过** |
-
-## CI 工作流
-
-`.github/workflows/tests.yml` 跑矩阵测试:
-- **OS**: ubuntu-latest + windows-latest
-- **Python**: 3.10 + 3.12
-- **步骤**:
-  1. install deps
-  2. `pytest tests/ -v --tb=short`
-  3. `python stage8_e2e_demo.py --no-llm`(验证 CLI)
-  4. (可选)上传 coverage 到 Codecov
-
-跑法:推 main / 开 PR / 手动 dispatch 都会触发。
 
 ## 后续可做
 
