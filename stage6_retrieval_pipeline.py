@@ -75,7 +75,10 @@ CRITERIA_WEIGHTS = {
     "authority": 0.15,   # 期刊权威性
 }
 
-MAX_FILES = None  # None=全量, 50=作业演示用
+# 默认 50 篇 — 作业演示 + e2e demo 足够;
+# 全量 3028 篇会显著拖慢首次启动(BM25 索引 ~10s,rerank 模型加载 ~5s,内存占用 1-2 GB)。
+# 真要全量跑:传 max_files=None 显式 opt-in(命令行:python stage6_retrieval_pipeline.py 时改 main() 第 549 行)。
+MAX_FILES = 50
 # =============================================
 
 

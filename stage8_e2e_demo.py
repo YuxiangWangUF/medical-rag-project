@@ -181,6 +181,7 @@ def main(argv: list = None) -> int:
         # 输出关键指标
         m = result.generation_metrics
         logger.info(f"  总耗时: {m.total_time_seconds:.2f}s")
+        logger.info(f"  答案长度: {len(result.answer)} 字符")
         logger.info(f"  Token 总数: {sum(m.token_counts.values())}")
         logger.info(
             f"  各阶段耗时: "
@@ -222,12 +223,25 @@ def main(argv: list = None) -> int:
         total_tokens = sum(
             sum(r["metrics"].token_counts.values()) for r in results
         )
+        avg_answer_len = sum(len(r["answer"]) for r in results) / len(results)
         logger.info(f"  平均耗时: {avg_time:.2f}s")
+        logger.info(f"  平均答案长度: {avg_answer_len:.0f} 字符")
         logger.info(f"  总 token 数: {total_tokens}")
+        # 各 query 单独统计
+        logger.info("")
+        logger.info("  各 query 详细:")
+        for i, r in enumerate(results, 1):
+            q = r["query"][:30] + ("..." if len(r["query"]) > 30 else "")
+            logger.info(
+                f"    [{i}] {q}  | 耗时 {r['elapsed']:.1f}s  | "
+                f"答案 {len(r['answer'])} 字  | "
+                f"引用 {len(r['sources'])} 条"
+            )
         # 阶段成功率
         all_stages = set()
         for r in results:
             all_stages.update(r["metrics"].stage_success.keys())
+        logger.info("")
         for stage in sorted(all_stages):
             successes = sum(
                 1 for r in results
